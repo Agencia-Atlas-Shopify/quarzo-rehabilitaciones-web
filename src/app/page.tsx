@@ -163,10 +163,6 @@ const FullScreenMenu = ({ isOpen, toggle }: { isOpen: boolean; toggle: () => voi
             </div>
           ))}
         </div>
-        <div className="absolute bottom-10 w-full px-12 flex justify-between text-[10px] uppercase tracking-[0.2em] opacity-30 font-sans">
-            <span>Alicante</span>
-            <span>Murcia</span>
-        </div>
       </motion.div>
     )}
   </AnimatePresence>
