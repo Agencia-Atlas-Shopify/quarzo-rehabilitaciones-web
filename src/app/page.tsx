@@ -257,46 +257,48 @@ const ProjectGallery = () => {
                 <SplitText>
                    <h2 className="text-4xl md:text-6xl font-serif italic text-[#141414]">Algunos de Nuestros Trabajos</h2>
                 </SplitText>
-                <span className="hidden md:block text-[10px] uppercase tracking-[0.2em] opacity-40">Alicante / Valencia</span>
+                <Link href="/trabajos" className="hidden md:flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] opacity-40 hover:opacity-100 transition-opacity">
+                  Ver todos →
+                </Link>
             </div>
 
             <div className="flex flex-col w-full">
                 {works.map((work, i) => (
-                    <motion.div
-                        key={i}
-                        initial="initial"
-                        whileHover="hover"
-                        className="group relative border-b border-[#141414]/10 py-16 cursor-none"
-                        data-cursor="view"
-                    >
-                        <div className="px-6 md:px-12 flex justify-between items-baseline relative z-20">
-                            <h3 className="text-4xl md:text-8xl font-sans font-bold uppercase tracking-tight transition-transform duration-500 group-hover:translate-x-10 text-[#141414] group-hover:text-[#E6E5E1] group-hover:mix-blend-difference">
-                                {work.name}
-                            </h3>
-                            <span className="text-sm font-serif italic opacity-60 group-hover:text-[#E6E5E1] group-hover:mix-blend-difference">{work.type}</span>
-                        </div>
+                    <Link href="/trabajos" key={i}>
+                      <motion.div
+                          initial="initial"
+                          whileHover="hover"
+                          className="group relative border-b border-[#141414]/10 py-16 cursor-pointer"
+                      >
+                          <div className="px-6 md:px-12 flex justify-between items-baseline relative z-20">
+                              <h3 className="text-4xl md:text-8xl font-sans font-bold uppercase tracking-tight transition-transform duration-500 group-hover:translate-x-10 text-[#141414] group-hover:text-[#E6E5E1] group-hover:mix-blend-difference">
+                                  {work.name}
+                              </h3>
+                              <span className="text-sm font-serif italic opacity-60 group-hover:text-[#E6E5E1] group-hover:mix-blend-difference">{work.type}</span>
+                          </div>
 
-                        {/* Hover Image */}
-                        <motion.div
-                            variants={{
-                                initial: { opacity: 0, scale: 0.9, rotate: -2 },
-                                hover: { opacity: 1, scale: 1, rotate: 0 }
-                            }}
-                            transition={{ duration: 0.4, ease: "easeOut" }}
-                            className="absolute left-0 right-0 top-0 bottom-0 pointer-events-none z-10 flex items-center justify-center"
-                        >
-                            <div className="w-[40vw] h-[40vh] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
-                                <img src={work.img} alt={work.name} className="w-full h-full object-cover" />
-                            </div>
-                        </motion.div>
+                          {/* Hover Image */}
+                          <motion.div
+                              variants={{
+                                  initial: { opacity: 0, scale: 0.9, rotate: -2 },
+                                  hover: { opacity: 1, scale: 1, rotate: 0 }
+                              }}
+                              transition={{ duration: 0.4, ease: "easeOut" }}
+                              className="absolute left-0 right-0 top-0 bottom-0 pointer-events-none z-10 flex items-center justify-center"
+                          >
+                              <div className="w-[40vw] h-[40vh] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+                                  <img src={work.img} alt={work.name} className="w-full h-full object-cover" />
+                              </div>
+                          </motion.div>
 
-                        {/* Fondo negro sutil al hover */}
-                        <motion.div
-                           className="absolute inset-0 bg-[#141414] z-0"
-                           variants={{ initial: { scaleY: 0 }, hover: { scaleY: 1 } }}
-                           transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
-                        />
-                    </motion.div>
+                          {/* Fondo negro sutil al hover */}
+                          <motion.div
+                             className="absolute inset-0 bg-[#141414] z-0"
+                             variants={{ initial: { scaleY: 0 }, hover: { scaleY: 1 } }}
+                             transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+                          />
+                      </motion.div>
+                    </Link>
                 ))}
             </div>
 
