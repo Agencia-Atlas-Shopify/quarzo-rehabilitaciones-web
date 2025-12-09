@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft, Phone, Mail, MapPin } from 'lucide-react';
+import { ArrowLeft, Phone, Mail, MapPin, CreditCard, CheckCircle } from 'lucide-react';
 
 interface ServiceLayoutProps {
   title: string;
@@ -102,6 +102,52 @@ export default function ServiceLayout({
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Financing Highlight Section */}
+      <section className="py-12 px-6 md:px-12 bg-gradient-to-r from-[#C4A484] to-[#a88b6b]">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-12"
+          >
+            <div className="flex items-center gap-4">
+              <div className="bg-[#141414] p-4 rounded-full">
+                <CreditCard className="w-8 h-8 text-[#C4A484]" />
+              </div>
+              <div>
+                <h3 className="text-2xl md:text-3xl font-bold text-[#141414]">
+                  Financiación Propia
+                </h3>
+                <p className="text-lg text-[#141414]/80 font-medium">
+                  Sin intereses · Sin bancos
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 text-[#141414]">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5" />
+                <span className="font-medium">Hasta 24 meses</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5" />
+                <span className="font-medium">0% interés</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5" />
+                <span className="font-medium">Sin comisiones</span>
+              </div>
+            </div>
+            <Link
+              href="/contacto"
+              className="bg-[#141414] text-[#E6E5E1] px-6 py-3 font-bold uppercase tracking-wider text-sm hover:bg-[#141414]/80 transition-colors whitespace-nowrap"
+            >
+              Consulta Condiciones
+            </Link>
+          </motion.div>
         </div>
       </section>
 
