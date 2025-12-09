@@ -53,3 +53,10 @@ body {
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+/* Marquee lento para texto grande */
+.animate-marquee-slow {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}

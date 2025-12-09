@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionValue, useVelocity, useAnimationFrame, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Instagram, Linkedin } from 'lucide-react';
 import Link from 'next/link';
 
@@ -62,33 +62,20 @@ const CinematicCursor = () => {
   );
 };
 
-const ArchitecturalMarquee = ({ text, direction = 1 }: { text: string; direction?: number }) => {
-  const baseX = useMotionValue(0);
-  const { scrollY } = useScroll();
-  const scrollVelocity = useVelocity(scrollY);
-  const smoothVelocity = useSpring(scrollVelocity, { damping: 50, stiffness: 300 });
-  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 2], { clamp: false });
-
-  const x = useTransform(baseX, (v) => `${parseFloat(String(v)) % -100}%`);
-  const directionFactor = useRef(direction);
-
-  useAnimationFrame((_t, delta) => {
-    let moveBy = directionFactor.current * 2 * (delta / 1000);
-    if (velocityFactor.get() < 0) directionFactor.current = -1 * direction;
-    else if (velocityFactor.get() > 0) directionFactor.current = 1 * direction;
-    moveBy += directionFactor.current * moveBy * velocityFactor.get();
-    baseX.set(baseX.get() + moveBy);
-  });
-
+const ArchitecturalMarquee = ({ text }: { text: string }) => {
   return (
-    <div className="overflow-hidden flex whitespace-nowrap border-y border-[#141414]/10 py-6 bg-[#E6E5E1] relative z-20">
-      <motion.div className="flex gap-20 text-6xl md:text-[8rem] font-sans font-bold uppercase tracking-tighter leading-none text-[#141414]/10" style={{ x }}>
-        {[...Array(4)].map((_, i) => (
-          <span key={i} className="flex items-center gap-20">
-            {text} <span className="font-sans text-4xl opacity-50">●</span>
-          </span>
+    <div className="overflow-hidden border-y border-[#141414]/10 py-6 bg-[#E6E5E1] relative z-20">
+      <div className="animate-marquee-slow">
+        {[...Array(2)].map((_, setIndex) => (
+          <div key={setIndex} className="flex shrink-0">
+            {[...Array(4)].map((_, i) => (
+              <span key={i} className="flex items-center gap-10 md:gap-20 mx-10 md:mx-20 text-4xl md:text-[8rem] font-sans font-bold uppercase tracking-tighter leading-none text-[#141414]/10 whitespace-nowrap">
+                {text} <span className="font-sans text-2xl md:text-4xl opacity-50">●</span>
+              </span>
+            ))}
+          </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 };
@@ -266,24 +253,23 @@ const ProjectGallery = () => {
                           whileHover="hover"
                           className="group relative border-b border-[#141414]/10 py-8 md:py-16 cursor-pointer"
                       >
-                          {/* Mobile layout with visible image */}
+                          {/* Mobile layout - simple card with image always visible */}
                           <div className="md:hidden px-6">
                             <div className="flex gap-4 items-center">
                               <div className="w-24 h-24 flex-shrink-0 overflow-hidden">
-                                <motion.img
+                                <img
                                   src={work.img}
                                   alt={work.name}
                                   className="w-full h-full object-cover"
-                                  whileInView={{ scale: [1.2, 1] }}
-                                  transition={{ duration: 0.8 }}
                                 />
                               </div>
                               <div className="flex-1">
-                                <h3 className="text-2xl font-sans font-bold uppercase tracking-tight text-[#141414] leading-tight">
+                                <h3 className="text-xl font-sans font-bold uppercase tracking-tight text-[#141414] leading-tight">
                                     {work.name}
                                 </h3>
-                                <span className="text-sm font-serif italic opacity-60 mt-1 block">{work.type}</span>
+                                <span className="text-sm font-serif italic text-[#141414]/60 mt-1 block">{work.type}</span>
                               </div>
+                              <span className="text-[#C4A484] text-xl">→</span>
                             </div>
                           </div>
 
