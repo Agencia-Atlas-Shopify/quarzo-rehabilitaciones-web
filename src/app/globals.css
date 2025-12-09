@@ -37,7 +37,7 @@ body {
 /* Animación marquee infinita */
 @keyframes marquee {
   0% {
-    transform: translateX(0%);
+    transform: translateX(0);
   }
   100% {
     transform: translateX(-50%);
@@ -45,5 +45,11 @@ body {
 }
 
 .animate-marquee {
-  animation: marquee 20s linear infinite;
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }

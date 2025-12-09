@@ -425,7 +425,7 @@ export default function TrabajosPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-[#141414]/98 flex items-center justify-center p-4"
+            className="fixed inset-0 z-[100] bg-[#141414] flex items-center justify-center p-4 md:p-8"
             onClick={() => setSelectedWork(null)}
           >
             {/* Close button */}
@@ -434,23 +434,23 @@ export default function TrabajosPage() {
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               exit={{ opacity: 0, scale: 0.5, rotate: 90 }}
               transition={{ duration: 0.3 }}
-              className="absolute top-6 right-6 w-14 h-14 bg-[#E6E5E1] flex items-center justify-center hover:bg-[#C4A484] transition-colors z-10"
+              className="absolute top-4 right-4 md:top-6 md:right-6 w-12 h-12 md:w-14 md:h-14 bg-[#E6E5E1] flex items-center justify-center hover:bg-[#C4A484] transition-colors z-20"
               onClick={() => setSelectedWork(null)}
             >
-              <X size={28} className="text-[#141414]" />
+              <X size={24} className="text-[#141414]" />
             </motion.button>
 
             <motion.div
-              initial={{ scale: 0.8, opacity: 0, y: 100 }}
+              initial={{ scale: 0.9, opacity: 0, y: 50 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.8, opacity: 0, y: 100 }}
-              transition={{ type: "spring", damping: 20, stiffness: 100 }}
-              className="max-w-6xl w-full flex flex-col md:flex-row gap-8 items-center"
+              exit={{ scale: 0.9, opacity: 0, y: 50 }}
+              transition={{ type: "spring", damping: 25, stiffness: 120 }}
+              className="max-w-6xl w-full flex flex-col md:flex-row gap-6 md:gap-8 items-center bg-[#141414] max-h-[90vh] overflow-y-auto p-4 md:p-0"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Image */}
               <motion.div
-                className="flex-1 relative overflow-hidden"
+                className="flex-1 relative overflow-hidden bg-[#1a1a1e] w-full"
                 initial={{ clipPath: 'inset(0 100% 0 0)' }}
                 animate={{ clipPath: 'inset(0 0% 0 0)' }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
@@ -458,23 +458,23 @@ export default function TrabajosPage() {
                 <img
                   src={selectedWork.img}
                   alt={selectedWork.title}
-                  className="w-full h-auto max-h-[75vh] object-contain"
+                  className="w-full h-auto max-h-[50vh] md:max-h-[75vh] object-contain"
                 />
               </motion.div>
 
               {/* Info */}
               <motion.div
-                className="md:w-96 text-[#E6E5E1]"
+                className="w-full md:w-96 text-[#E6E5E1] flex-shrink-0"
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <span className="inline-block bg-[#C4A484] text-[#141414] px-4 py-1 text-xs font-bold uppercase tracking-wider mb-6">
+                <span className="inline-block bg-[#C4A484] text-[#141414] px-4 py-1 text-xs font-bold uppercase tracking-wider mb-4 md:mb-6">
                   {selectedWork.category}
                 </span>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">{selectedWork.title}</h2>
+                <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 leading-tight">{selectedWork.title}</h2>
 
-                <div className="space-y-4 text-sm border-t border-[#E6E5E1]/20 pt-6 mb-8">
+                <div className="space-y-3 md:space-y-4 text-sm border-t border-[#E6E5E1]/20 pt-4 md:pt-6 mb-6 md:mb-8">
                   <div className="flex justify-between items-center">
                     <span className="opacity-50 uppercase tracking-wider text-xs">Ubicación</span>
                     <span className="font-bold">{selectedWork.location}</span>
@@ -491,7 +491,7 @@ export default function TrabajosPage() {
 
                 <Link
                   href="/contacto"
-                  className="inline-flex items-center gap-3 bg-[#E6E5E1] text-[#141414] px-8 py-4 font-bold uppercase tracking-wider hover:bg-[#C4A484] transition-all group w-full justify-center"
+                  className="inline-flex items-center gap-3 bg-[#E6E5E1] text-[#141414] px-6 md:px-8 py-3 md:py-4 font-bold uppercase tracking-wider hover:bg-[#C4A484] transition-all group w-full justify-center text-sm md:text-base"
                 >
                   Solicitar Proyecto Similar
                   <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -556,7 +556,15 @@ export default function TrabajosPage() {
             <Link href="/trabajos" className="text-[#E6E5E1]">Trabajos</Link>
             <Link href="/contacto" className="hover:text-[#E6E5E1] transition-colors">Contacto</Link>
           </div>
-          <span className="text-xs text-[#E6E5E1]/40">© Quarzo 2025</span>
+          <div className="flex items-center gap-3 text-[#E6E5E1]/40">
+            <img src="/images/next-generation-eu.png" alt="Next Generation EU" className="h-6 w-auto opacity-60" />
+          </div>
+        </div>
+        <div className="max-w-6xl mx-auto mt-6 pt-6 border-t border-[#E6E5E1]/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#E6E5E1]/40">
+          <span>© Quarzo Rehabilitaciones 2025</span>
+          <a href="https://theatlas.es" target="_blank" rel="noopener noreferrer" className="hover:text-[#E6E5E1] transition-colors">
+            Creado por Atlas Agencia E-Commerce
+          </a>
         </div>
       </footer>
     </div>

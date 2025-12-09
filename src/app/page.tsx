@@ -264,32 +264,54 @@ const ProjectGallery = () => {
                       <motion.div
                           initial="initial"
                           whileHover="hover"
-                          className="group relative border-b border-[#141414]/10 py-16 cursor-pointer"
+                          className="group relative border-b border-[#141414]/10 py-8 md:py-16 cursor-pointer"
                       >
-                          <div className="px-6 md:px-12 flex justify-between items-baseline relative z-20">
+                          {/* Mobile layout with visible image */}
+                          <div className="md:hidden px-6">
+                            <div className="flex gap-4 items-center">
+                              <div className="w-24 h-24 flex-shrink-0 overflow-hidden">
+                                <motion.img
+                                  src={work.img}
+                                  alt={work.name}
+                                  className="w-full h-full object-cover"
+                                  whileInView={{ scale: [1.2, 1] }}
+                                  transition={{ duration: 0.8 }}
+                                />
+                              </div>
+                              <div className="flex-1">
+                                <h3 className="text-2xl font-sans font-bold uppercase tracking-tight text-[#141414] leading-tight">
+                                    {work.name}
+                                </h3>
+                                <span className="text-sm font-serif italic opacity-60 mt-1 block">{work.type}</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Desktop layout with hover effect */}
+                          <div className="hidden md:flex px-6 md:px-12 justify-between items-baseline relative z-20">
                               <h3 className="text-4xl md:text-8xl font-sans font-bold uppercase tracking-tight transition-transform duration-500 group-hover:translate-x-10 text-[#141414] group-hover:text-[#E6E5E1] group-hover:mix-blend-difference">
                                   {work.name}
                               </h3>
                               <span className="text-sm font-serif italic opacity-60 group-hover:text-[#E6E5E1] group-hover:mix-blend-difference">{work.type}</span>
                           </div>
 
-                          {/* Hover Image */}
+                          {/* Hover Image - Desktop only */}
                           <motion.div
                               variants={{
                                   initial: { opacity: 0, scale: 0.9, rotate: -2 },
                                   hover: { opacity: 1, scale: 1, rotate: 0 }
                               }}
                               transition={{ duration: 0.4, ease: "easeOut" }}
-                              className="absolute left-0 right-0 top-0 bottom-0 pointer-events-none z-10 flex items-center justify-center"
+                              className="hidden md:flex absolute left-0 right-0 top-0 bottom-0 pointer-events-none z-10 items-center justify-center"
                           >
                               <div className="w-[40vw] h-[40vh] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
                                   <img src={work.img} alt={work.name} className="w-full h-full object-cover" />
                               </div>
                           </motion.div>
 
-                          {/* Fondo negro sutil al hover */}
+                          {/* Fondo negro sutil al hover - Desktop only */}
                           <motion.div
-                             className="absolute inset-0 bg-[#141414] z-0"
+                             className="hidden md:block absolute inset-0 bg-[#141414] z-0"
                              variants={{ initial: { scaleY: 0 }, hover: { scaleY: 1 } }}
                              transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
                           />
@@ -373,10 +395,10 @@ const Services = () => {
 const Footer = () => {
     return (
         <div
-            className="relative h-[80vh]"
+            className="relative h-[50vh]"
             style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
         >
-            <div className="fixed bottom-0 h-[80vh] w-full bg-[#C4A484] flex flex-col justify-between p-6 md:p-12 z-0">
+            <div className="fixed bottom-0 h-[50vh] w-full bg-[#C4A484] flex flex-col justify-between p-6 md:p-12 z-0">
                 <div className="flex justify-between font-sans text-[10px] uppercase tracking-[0.2em] text-[#141414]/60">
                    <span>Contact Us</span>
                    <span>Elche, ES</span>
@@ -392,7 +414,7 @@ const Footer = () => {
                     </motion.h2>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 border-t border-[#141414]/20 pt-10 text-[#141414]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 border-t border-[#141414]/20 pt-10 text-[#141414]">
                     <div className="flex flex-col gap-2">
                         <span className="text-[10px] uppercase tracking-[0.2em] opacity-50">Email</span>
                         <a href="mailto:joseantonio@quarzorehabilitaciones.es" className="font-serif italic text-base md:text-xl hover:opacity-50 interactive break-all">joseantonio@quarzorehabilitaciones.es</a>
@@ -411,6 +433,10 @@ const Footer = () => {
                              <Linkedin size={20} className="interactive cursor-pointer hover:scale-110 transition-transform" />
                          </div>
                          <span className="text-[10px] uppercase opacity-40">© Quarzo 2025</span>
+                    </div>
+                    <div className="flex flex-col gap-2 items-start sm:items-end">
+                        <span className="text-[10px] uppercase tracking-[0.2em] opacity-50">Financiado por</span>
+                        <img src="/images/next-generation-eu.png" alt="Next Generation EU" className="h-10 md:h-12 w-auto" />
                     </div>
                 </div>
             </div>
@@ -493,7 +519,7 @@ export default function App() {
                 <Navbar toggleMenu={() => setMenuOpen(!menuOpen)} isMenuOpen={menuOpen} />
                 <FullScreenMenu isOpen={menuOpen} toggle={() => setMenuOpen(false)} />
 
-                <main className="relative z-10 bg-[#E6E5E1] mb-[80vh]">
+                <main className="relative z-10 bg-[#E6E5E1] mb-[50vh]">
                     <Hero />
                     <ArchitecturalMarquee text="Rehabilitación de Fachadas Elche" />
 

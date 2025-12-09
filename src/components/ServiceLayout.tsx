@@ -109,11 +109,15 @@ export default function ServiceLayout({
       <section className="bg-gradient-to-r from-[#C4A484] to-[#a88b6b] overflow-hidden">
         {/* Marquee infinito */}
         <div className="bg-[#141414] py-2 overflow-hidden">
-          <div className="flex animate-marquee whitespace-nowrap">
-            {[...Array(10)].map((_, i) => (
-              <span key={i} className="mx-8 text-sm font-medium text-[#C4A484] uppercase tracking-wider">
-                Financiación propia sin intereses* · Hasta 36 meses · Sin bancos · 0% interés ·
-              </span>
+          <div className="animate-marquee">
+            {[...Array(2)].map((_, setIndex) => (
+              <div key={setIndex} className="flex shrink-0">
+                {[...Array(6)].map((_, i) => (
+                  <span key={i} className="mx-8 text-sm font-medium text-[#C4A484] uppercase tracking-wider whitespace-nowrap">
+                    Financiación propia sin intereses* · Hasta 36 meses · Sin bancos · 0% interés ·
+                  </span>
+                ))}
+              </div>
             ))}
           </div>
         </div>
@@ -331,9 +335,15 @@ export default function ServiceLayout({
             </p>
           </div>
         </div>
-        <div className="max-w-6xl mx-auto mt-12 pt-8 border-t border-white/10 text-sm opacity-40 flex justify-between">
+        <div className="max-w-6xl mx-auto mt-12 pt-8 border-t border-white/10 text-sm opacity-40 flex flex-col md:flex-row justify-between items-center gap-4">
           <span>© Quarzo Rehabilitaciones 2025</span>
-          <span>Diseñado con precisión</span>
+          <div className="flex items-center gap-3">
+            <span className="text-xs">Financiado por</span>
+            <img src="/images/next-generation-eu.png" alt="Next Generation EU" className="h-8 w-auto opacity-80" />
+          </div>
+          <a href="https://theatlas.es" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 transition-opacity">
+            Creado por Atlas Agencia E-Commerce
+          </a>
         </div>
       </footer>
 

@@ -1,10 +1,9 @@
 'use client';
 
-import { Metadata } from 'next';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft, Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
 
 export default function ContactoPage() {
   const [formState, setFormState] = useState({
@@ -12,14 +11,82 @@ export default function ContactoPage() {
     email: '',
     telefono: '',
     servicio: '',
-    mensaje: ''
+    mensaje: '',
+    // Honeypot field - should remain empty
+    website: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
+  const [formLoadTime, setFormLoadTime] = useState(0);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Record when the form was loaded (for timing-based anti-spam)
+  useEffect(() => {
+    setFormLoadTime(Date.now());
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would handle form submission
-    setIsSubmitted(true);
+    setError('');
+
+    // Anti-spam checks
+    // 1. Honeypot check - if the hidden field is filled, it's a bot
+    if (formState.website) {
+      // Silently reject but show success to fool bots
+      setIsSubmitted(true);
+      return;
+    }
+
+    // 2. Timing check - if form submitted too fast (< 3 seconds), likely a bot
+    const timeSpent = Date.now() - formLoadTime;
+    if (timeSpent < 3000) {
+      setError('Por favor, tómese un momento para completar el formulario.');
+      return;
+    }
+
+    // 3. Basic validation
+    if (!formState.nombre.trim() || !formState.email.trim() || !formState.mensaje.trim()) {
+      setError('Por favor, complete todos los campos obligatorios.');
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formState.email)) {
+      setError('Por favor, introduzca un email válido.');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Send to FormSubmit or similar service
+      const response = await fetch('https://formsubmit.co/ajax/joseantonio@quarzorehabilitaciones.es', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          nombre: formState.nombre,
+          email: formState.email,
+          telefono: formState.telefono || 'No proporcionado',
+          servicio: formState.servicio || 'No especificado',
+          mensaje: formState.mensaje,
+          _subject: `Nueva consulta de ${formState.nombre} - Quarzo Rehabilitaciones`,
+        })
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        setError('Hubo un error al enviar el mensaje. Por favor, inténtelo de nuevo.');
+      }
+    } catch {
+      setError('Error de conexión. Por favor, inténtelo de nuevo más tarde.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -103,6 +170,32 @@ export default function ContactoPage() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Error message */}
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 flex items-center gap-3"
+                  >
+                    <AlertCircle size={20} />
+                    <span>{error}</span>
+                  </motion.div>
+                )}
+
+                {/* Honeypot field - hidden from users but visible to bots */}
+                <div className="absolute opacity-0 pointer-events-none" aria-hidden="true">
+                  <label htmlFor="website">Website</label>
+                  <input
+                    type="text"
+                    id="website"
+                    name="website"
+                    value={formState.website}
+                    onChange={handleChange}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+
                 <div>
                   <label htmlFor="nombre" className="block text-sm font-bold uppercase tracking-wider mb-2">
                     Nombre completo *
@@ -189,10 +282,23 @@ export default function ContactoPage() {
 
                 <button
                   type="submit"
-                  className="w-full bg-[#141414] text-[#E6E5E1] px-8 py-5 font-bold uppercase tracking-wider hover:bg-[#C4A484] hover:text-[#141414] transition-colors flex items-center justify-center gap-3"
+                  disabled={isSubmitting}
+                  className="w-full bg-[#141414] text-[#E6E5E1] px-8 py-5 font-bold uppercase tracking-wider hover:bg-[#C4A484] hover:text-[#141414] transition-colors flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <Send size={18} />
-                  Enviar Solicitud
+                  {isSubmitting ? (
+                    <>
+                      <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      </svg>
+                      Enviando...
+                    </>
+                  ) : (
+                    <>
+                      <Send size={18} />
+                      Enviar Solicitud
+                    </>
+                  )}
                 </button>
 
                 <p className="text-sm opacity-50 text-center">
@@ -348,9 +454,15 @@ export default function ContactoPage() {
             </p>
           </div>
         </div>
-        <div className="max-w-6xl mx-auto mt-12 pt-8 border-t border-white/10 text-sm opacity-40 flex justify-between">
+        <div className="max-w-6xl mx-auto mt-12 pt-8 border-t border-white/10 text-sm opacity-40 flex flex-col md:flex-row justify-between items-center gap-4">
           <span>© Quarzo Rehabilitaciones 2025</span>
-          <span>Diseñado con precisión</span>
+          <div className="flex items-center gap-3">
+            <span className="text-xs">Financiado por</span>
+            <img src="/images/next-generation-eu.png" alt="Next Generation EU" className="h-8 w-auto opacity-80" />
+          </div>
+          <a href="https://theatlas.es" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 transition-opacity">
+            Creado por Atlas Agencia E-Commerce
+          </a>
         </div>
       </footer>
 
