@@ -141,18 +141,25 @@ const FullScreenMenu = ({ isOpen, toggle }: { isOpen: boolean; toggle: () => voi
         className="fixed inset-0 bg-[#141414] z-40 flex flex-col justify-center items-center text-[#E6E5E1]"
       >
         <div className="flex flex-col gap-0 text-center mix-blend-difference">
-          {['Obras', 'Estudio', 'Servicios', 'Contacto'].map((item, i) => (
-            <div key={item} className="overflow-hidden group">
-                <motion.a
-                  href={`#${item.toLowerCase()}`}
-                  onClick={toggle}
+          {[
+            { name: 'Trabajos', href: '/trabajos' },
+            { name: 'Servicios', href: '/#servicios' },
+            { name: 'Contacto', href: '/contacto' }
+          ].map((item, i) => (
+            <div key={item.name} className="overflow-hidden group">
+                <motion.div
                   initial={{ y: "110%" }}
                   animate={{ y: 0 }}
                   transition={{ delay: 0.2 + (i * 0.1), duration: 0.8 }}
-                  className="block text-[12vw] md:text-[8vw] font-serif italic leading-[0.85] hover:text-white/50 transition-colors cursor-pointer interactive"
                 >
-                  {item}
-                </motion.a>
+                  <Link
+                    href={item.href}
+                    onClick={toggle}
+                    className="block text-[12vw] md:text-[8vw] font-serif italic leading-[0.85] hover:text-white/50 transition-colors cursor-pointer interactive"
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
             </div>
           ))}
         </div>
@@ -248,7 +255,7 @@ const ProjectGallery = () => {
         <section className="py-40 bg-[#E6E5E1] relative z-10 text-[#141414]">
             <div className="px-6 md:px-12 mb-20 flex items-end justify-between border-b border-[#141414]/10 pb-6">
                 <SplitText>
-                   <h2 className="text-4xl md:text-6xl font-serif italic text-[#141414]">Obras Selectas</h2>
+                   <h2 className="text-4xl md:text-6xl font-serif italic text-[#141414]">Algunos de Nuestros Trabajos</h2>
                 </SplitText>
                 <span className="hidden md:block text-[10px] uppercase tracking-[0.2em] opacity-40">Alicante / Valencia</span>
             </div>
