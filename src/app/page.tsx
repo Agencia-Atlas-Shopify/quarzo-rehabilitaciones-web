@@ -235,47 +235,154 @@ const ProjectGallery = () => {
     ];
 
     return (
-        <section className="py-40 bg-[#E6E5E1] relative z-10 text-[#141414]">
-            <div className="px-6 md:px-12 mb-20 flex items-end justify-between border-b border-[#141414]/10 pb-6">
+        <section className="py-20 md:py-40 bg-[#E6E5E1] relative z-10 text-[#141414]">
+            {/* Header - Desktop */}
+            <div className="hidden md:flex px-6 md:px-12 mb-20 items-end justify-between border-b border-[#141414]/10 pb-6">
                 <SplitText>
                    <h2 className="text-4xl md:text-6xl font-serif italic text-[#141414]">Algunos de Nuestros Trabajos</h2>
                 </SplitText>
-                <Link href="/trabajos" className="hidden md:flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] opacity-40 hover:opacity-100 transition-opacity">
+                <Link href="/trabajos" className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] opacity-40 hover:opacity-100 transition-opacity">
                   Ver todos →
                 </Link>
             </div>
 
-            <div className="flex flex-col w-full">
+            {/* Mobile Header - Premium Style */}
+            <div className="md:hidden px-6 mb-8">
+                <motion.span
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  className="text-[10px] uppercase tracking-[0.3em] text-[#C4A484] font-bold block mb-3"
+                >
+                  Portfolio
+                </motion.span>
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="text-3xl font-serif italic text-[#141414] leading-tight"
+                >
+                  Nuestros<br/>Trabajos
+                </motion.h2>
+            </div>
+
+            {/* Mobile Gallery - Awwwards Style */}
+            <div className="md:hidden">
+              {works.map((work, i) => (
+                <Link href="/trabajos" key={i}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 60 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay: i * 0.1 }}
+                    className="relative mb-4 mx-4 group"
+                  >
+                    {/* Card Container */}
+                    <div className="relative overflow-hidden aspect-[4/5] bg-[#141414]">
+                      {/* Image with parallax effect */}
+                      <motion.div
+                        initial={{ scale: 1.1 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2, ease: [0.33, 1, 0.68, 1] }}
+                        className="absolute inset-0"
+                      >
+                        <img
+                          src={work.img}
+                          alt={work.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </motion.div>
+
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-[#141414]/20 to-transparent" />
+
+                      {/* Index Number - Large decorative */}
+                      <div className="absolute top-4 right-4">
+                        <span className="text-[80px] font-sans font-bold leading-none text-white/10">
+                          0{i + 1}
+                        </span>
+                      </div>
+
+                      {/* Content Overlay */}
+                      <div className="absolute bottom-0 left-0 right-0 p-6">
+                        {/* Type Badge */}
+                        <motion.span
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.3 + i * 0.1 }}
+                          className="inline-block px-3 py-1 bg-[#C4A484] text-[#141414] text-[10px] font-bold uppercase tracking-[0.15em] mb-4"
+                        >
+                          {work.type}
+                        </motion.span>
+
+                        {/* Title */}
+                        <motion.h3
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.4 + i * 0.1 }}
+                          className="text-2xl font-sans font-bold uppercase tracking-tight text-white leading-[1.1] mb-3"
+                        >
+                          {work.name}
+                        </motion.h3>
+
+                        {/* CTA Line */}
+                        <motion.div
+                          initial={{ opacity: 0, width: 0 }}
+                          whileInView={{ opacity: 1, width: "100%" }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.5 + i * 0.1, duration: 0.6 }}
+                          className="flex items-center justify-between pt-4 border-t border-white/20"
+                        >
+                          <span className="text-[10px] uppercase tracking-[0.2em] text-white/60 font-medium">
+                            Ver proyecto
+                          </span>
+                          <motion.span
+                            className="text-[#C4A484] text-xl"
+                            initial={{ x: -10, opacity: 0 }}
+                            whileInView={{ x: 0, opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.6 + i * 0.1 }}
+                          >
+                            →
+                          </motion.span>
+                        </motion.div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </Link>
+              ))}
+
+              {/* Ver Todos Button - Mobile */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="px-6 mt-8"
+              >
+                <Link
+                  href="/trabajos"
+                  className="flex items-center justify-center gap-3 w-full py-4 border border-[#141414] text-[#141414] text-sm font-bold uppercase tracking-[0.15em] hover:bg-[#141414] hover:text-[#E6E5E1] transition-all duration-300"
+                >
+                  <span>Ver todos los trabajos</span>
+                  <span>→</span>
+                </Link>
+              </motion.div>
+            </div>
+
+            {/* Desktop Gallery */}
+            <div className="hidden md:flex flex-col w-full">
                 {works.map((work, i) => (
                     <Link href="/trabajos" key={i}>
                       <motion.div
                           initial="initial"
                           whileHover="hover"
-                          className="group relative border-b border-[#141414]/10 py-8 md:py-16 cursor-pointer"
+                          className="group relative border-b border-[#141414]/10 py-16 cursor-pointer"
                       >
-                          {/* Mobile layout - simple card with image always visible */}
-                          <div className="md:hidden px-6">
-                            <div className="flex gap-4 items-center">
-                              <div className="w-24 h-24 flex-shrink-0 overflow-hidden">
-                                <img
-                                  src={work.img}
-                                  alt={work.name}
-                                  className="w-full h-full object-cover"
-                                />
-                              </div>
-                              <div className="flex-1">
-                                <h3 className="text-xl font-sans font-bold uppercase tracking-tight text-[#141414] leading-tight">
-                                    {work.name}
-                                </h3>
-                                <span className="text-sm font-serif italic text-[#141414]/60 mt-1 block">{work.type}</span>
-                              </div>
-                              <span className="text-[#C4A484] text-xl">→</span>
-                            </div>
-                          </div>
-
                           {/* Desktop layout with hover effect */}
-                          <div className="hidden md:flex px-6 md:px-12 justify-between items-baseline relative z-20">
-                              <h3 className="text-4xl md:text-8xl font-sans font-bold uppercase tracking-tight transition-transform duration-500 group-hover:translate-x-10 text-[#141414] group-hover:text-[#E6E5E1] group-hover:mix-blend-difference">
+                          <div className="flex px-12 justify-between items-baseline relative z-20">
+                              <h3 className="text-8xl font-sans font-bold uppercase tracking-tight transition-transform duration-500 group-hover:translate-x-10 text-[#141414] group-hover:text-[#E6E5E1] group-hover:mix-blend-difference">
                                   {work.name}
                               </h3>
                               <span className="text-sm font-serif italic opacity-60 group-hover:text-[#E6E5E1] group-hover:mix-blend-difference">{work.type}</span>
@@ -288,7 +395,7 @@ const ProjectGallery = () => {
                                   hover: { opacity: 1, scale: 1, rotate: 0 }
                               }}
                               transition={{ duration: 0.4, ease: "easeOut" }}
-                              className="hidden md:flex absolute left-0 right-0 top-0 bottom-0 pointer-events-none z-10 items-center justify-center"
+                              className="absolute left-0 right-0 top-0 bottom-0 pointer-events-none z-10 flex items-center justify-center"
                           >
                               <div className="w-[40vw] h-[40vh] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
                                   <img src={work.img} alt={work.name} className="w-full h-full object-cover" />
@@ -297,7 +404,7 @@ const ProjectGallery = () => {
 
                           {/* Fondo negro sutil al hover - Desktop only */}
                           <motion.div
-                             className="hidden md:block absolute inset-0 bg-[#141414] z-0"
+                             className="absolute inset-0 bg-[#141414] z-0"
                              variants={{ initial: { scaleY: 0 }, hover: { scaleY: 1 } }}
                              transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
                           />
