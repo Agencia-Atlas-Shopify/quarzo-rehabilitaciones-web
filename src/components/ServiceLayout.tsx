@@ -337,10 +337,7 @@ export default function ServiceLayout({
         </div>
         <div className="max-w-6xl mx-auto mt-12 pt-8 border-t border-white/10 text-sm opacity-40 flex flex-col md:flex-row justify-between items-center gap-4">
           <span>© Quarzo Rehabilitaciones 2025</span>
-          <div className="flex items-center gap-3">
-            <span className="text-xs">Financiado por</span>
-            <img src="/images/next-generation-eu.png" alt="Next Generation EU" className="h-8 w-auto opacity-80" />
-          </div>
+          <img src="/images/kit-digital-next-generation.png" alt="Kit Digital - Financiado por la Unión Europea Next Generation EU" className="h-12 w-auto" />
           <a href="https://theatlas.es" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 transition-opacity">
             Creado por Atlas Agencia E-Commerce
           </a>

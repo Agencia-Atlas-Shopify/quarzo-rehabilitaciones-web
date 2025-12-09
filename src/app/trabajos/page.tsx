@@ -556,9 +556,7 @@ export default function TrabajosPage() {
             <Link href="/trabajos" className="text-[#E6E5E1]">Trabajos</Link>
             <Link href="/contacto" className="hover:text-[#E6E5E1] transition-colors">Contacto</Link>
           </div>
-          <div className="flex items-center gap-3 text-[#E6E5E1]/40">
-            <img src="/images/next-generation-eu.png" alt="Next Generation EU" className="h-6 w-auto opacity-60" />
-          </div>
+          <img src="/images/kit-digital-next-generation.png" alt="Kit Digital - Financiado por la Unión Europea Next Generation EU" className="h-10 w-auto" />
         </div>
         <div className="max-w-6xl mx-auto mt-6 pt-6 border-t border-[#E6E5E1]/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#E6E5E1]/40">
           <span>© Quarzo Rehabilitaciones 2025</span>

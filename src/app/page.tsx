@@ -435,8 +435,7 @@ const Footer = () => {
                          <span className="text-[10px] uppercase opacity-40">© Quarzo 2025</span>
                     </div>
                     <div className="flex flex-col gap-2 items-start sm:items-end">
-                        <span className="text-[10px] uppercase tracking-[0.2em] opacity-50">Financiado por</span>
-                        <img src="/images/next-generation-eu.png" alt="Next Generation EU" className="h-10 md:h-12 w-auto" />
+                        <img src="/images/kit-digital-next-generation.png" alt="Kit Digital - Financiado por la Unión Europea Next Generation EU" className="h-12 md:h-14 w-auto" />
                     </div>
                 </div>
             </div>
