@@ -1,15 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Exportación estática para GitHub Pages
-  output: 'export',
-
-  // Base path para GitHub Pages (nombre del repositorio)
-  basePath: process.env.NODE_ENV === 'production' ? '/quarzo-rehabilitaciones-web' : '',
-
-  // Optimización de imágenes (deshabilitada para export estático)
+  // Optimización de imágenes
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
