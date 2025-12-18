@@ -16,12 +16,12 @@ const nextConfig: NextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
 
-  // Headers de caché
+  // Headers de caché optimizados
   async headers() {
     return [
       {
-        // Caché para assets estáticos (imágenes, fuentes, etc.)
-        source: '/(.*)\\.(ico|png|jpg|jpeg|gif|svg|webp|avif|woff|woff2|ttf|ttc|otf)',
+        // Caché largo para assets estáticos de Next.js (tienen hash en el nombre)
+        source: '/_next/static/:path*',
         headers: [
           {
             key: 'Cache-Control',
@@ -30,8 +30,8 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        // Caché para JS y CSS
-        source: '/_next/static/(.*)',
+        // Caché largo para imágenes, fuentes, etc.
+        source: '/:path*.(ico|png|jpg|jpeg|gif|svg|webp|avif|woff|woff2|ttf|otf)',
         headers: [
           {
             key: 'Cache-Control',
@@ -40,16 +40,21 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        // Caché para páginas HTML (revalidar cada hora)
-        source: '/(.*)',
+        // Caché para páginas HTML
+        source: '/:path*',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=3600, stale-while-revalidate=86400',
+            value: 'public, max-age=0, s-maxage=86400, stale-while-revalidate=86400',
           },
         ],
       },
     ];
+  },
+
+  // Deshabilitar polyfills para navegadores antiguos
+  experimental: {
+    optimizePackageImports: ['framer-motion', 'lucide-react'],
   },
 
   // Compresión
