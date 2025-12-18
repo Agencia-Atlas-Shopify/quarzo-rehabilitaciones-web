@@ -488,10 +488,10 @@ const Services = () => {
 const Footer = () => {
     return (
         <div
-            className="relative h-[50vh]"
+            className="relative h-[70vh] md:h-[60vh]"
             style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
         >
-            <div className="fixed bottom-0 h-[50vh] w-full bg-[#C4A484] flex flex-col justify-between p-6 md:p-12 z-0">
+            <div className="fixed bottom-0 h-[70vh] md:h-[60vh] w-full bg-[#C4A484] flex flex-col justify-between p-6 md:p-12 z-0">
                 <div className="flex justify-between font-sans text-[10px] uppercase tracking-[0.2em] text-[#141414]/60">
                    <span>Contact Us</span>
                    <span>Elche, ES</span>
@@ -611,7 +611,7 @@ export default function App() {
                 <Navbar toggleMenu={() => setMenuOpen(!menuOpen)} isMenuOpen={menuOpen} />
                 <FullScreenMenu isOpen={menuOpen} toggle={() => setMenuOpen(false)} />
 
-                <main className="relative z-10 bg-[#E6E5E1] mb-[50vh]">
+                <main className="relative z-10 bg-[#E6E5E1] mb-[70vh] md:mb-[60vh]">
                     <Hero />
                     <ArchitecturalMarquee text="Rehabilitación de Fachadas Elche" />
 
