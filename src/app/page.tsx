@@ -177,7 +177,7 @@ const Hero = () => {
              className="w-full h-full opacity-70"
            >
               <img
-                src="https://quarzorehabilitaciones.es/wp-content/uploads/2025/05/20241023_100959906_iOS_0-scaled.jpeg"
+                src="/images/trabajos/20241023_100959906_iOS_0-scaled.jpeg"
                 alt="Quarzo Rehabilitaciones"
                 className="w-full h-full object-cover"
               />
@@ -228,10 +228,10 @@ const Hero = () => {
 // --- PROJECTS ---
 const ProjectGallery = () => {
     const works = [
-      { name: "Rehabilitación Fachada", type: "SATE", img: "https://quarzorehabilitaciones.es/wp-content/uploads/2024/12/IMG_4136-scaled.webp" },
-      { name: "Restauración Edificio", type: "Patrimonio", img: "https://quarzorehabilitaciones.es/wp-content/uploads/2024/12/IMG_4123-scaled.webp" },
-      { name: "Trabajo Vertical", type: "Vertical", img: "https://quarzorehabilitaciones.es/wp-content/uploads/2025/05/IMG_20230926_081639-scaled.jpg" },
-      { name: "Reforma Integral", type: "Restauración", img: "https://quarzorehabilitaciones.es/wp-content/uploads/2024/12/IMG_4082-scaled.webp" }
+      { name: "Rehabilitación Fachada", type: "SATE", img: "/images/trabajos/IMG_4136-scaled.webp" },
+      { name: "Restauración Edificio", type: "Patrimonio", img: "/images/trabajos/IMG_4123-scaled.webp" },
+      { name: "Trabajo Vertical", type: "Vertical", img: "/images/trabajos/IMG_20230926_081639-scaled.jpg" },
+      { name: "Reforma Integral", type: "Restauración", img: "/images/trabajos/IMG_4082-scaled.webp" }
     ];
 
     return (

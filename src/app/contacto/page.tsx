@@ -472,7 +472,7 @@ export default function ContactoPage() {
             '@type': 'LocalBusiness',
             name: 'Quarzo Rehabilitaciones',
             description: 'Empresa especializada en rehabilitación de fachadas, SATE, trabajos verticales y restauración de patrimonio en Elche y Alicante.',
-            image: 'https://quarzorehabilitaciones.es/wp-content/uploads/2024/12/IMG_4136-scaled.webp',
+            image: 'https://www.quarzorehabilitaciones.es/images/trabajos/IMG_4136-scaled.webp',
             '@id': 'https://quarzorehabilitaciones.es',
             url: 'https://quarzorehabilitaciones.es',
             telephone: '+34697109583',

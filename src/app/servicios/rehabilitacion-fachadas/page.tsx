@@ -64,9 +64,9 @@ const rehabilitacionFachadasPage = {
     },
   ],
   gallery: [
-    'https://quarzorehabilitaciones.es/wp-content/uploads/2024/12/IMG_4136-scaled.webp',
-    'https://quarzorehabilitaciones.es/wp-content/uploads/2024/12/IMG_4123-scaled.webp',
-    'https://quarzorehabilitaciones.es/wp-content/uploads/2024/12/IMG_4082-scaled.webp',
+    '/images/trabajos/IMG_4136-scaled.webp',
+    '/images/trabajos/IMG_4123-scaled.webp',
+    '/images/trabajos/IMG_4082-scaled.webp',
     'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800',
     'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=800',
     'https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=800',

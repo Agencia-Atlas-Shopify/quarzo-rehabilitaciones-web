@@ -12,7 +12,7 @@ const trabajos = [
     category: "SATE",
     location: "Elche",
     year: "2024",
-    img: "https://quarzorehabilitaciones.es/wp-content/uploads/2024/12/IMG_4136-scaled.webp",
+    img: "/images/trabajos/IMG_4136-scaled.webp",
     height: 'tall'
   },
   {
@@ -21,7 +21,7 @@ const trabajos = [
     category: "Patrimonio",
     location: "Alicante",
     year: "2024",
-    img: "https://quarzorehabilitaciones.es/wp-content/uploads/2024/12/IMG_4123-scaled.webp",
+    img: "/images/trabajos/IMG_4123-scaled.webp",
     height: 'medium'
   },
   {
@@ -30,7 +30,7 @@ const trabajos = [
     category: "Vertical",
     location: "Elche",
     year: "2023",
-    img: "https://quarzorehabilitaciones.es/wp-content/uploads/2025/05/IMG_20230926_081639-scaled.jpg",
+    img: "/images/trabajos/IMG_20230926_081639-scaled.jpg",
     height: 'short'
   },
   {
@@ -39,7 +39,7 @@ const trabajos = [
     category: "Rehabilitación",
     location: "Santa Pola",
     year: "2024",
-    img: "https://quarzorehabilitaciones.es/wp-content/uploads/2024/12/IMG_4082-scaled.webp",
+    img: "/images/trabajos/IMG_4082-scaled.webp",
     height: 'medium'
   },
   {
@@ -48,7 +48,7 @@ const trabajos = [
     category: "SATE",
     location: "Crevillente",
     year: "2024",
-    img: "https://quarzorehabilitaciones.es/wp-content/uploads/2025/05/20241023_100959906_iOS_0-scaled.jpeg",
+    img: "/images/trabajos/20241023_100959906_iOS_0-scaled.jpeg",
     height: 'tall'
   },
   {
@@ -57,7 +57,7 @@ const trabajos = [
     category: "Rehabilitación",
     location: "Elche",
     year: "2023",
-    img: "https://quarzorehabilitaciones.es/wp-content/uploads/2024/12/IMG_4136-scaled.webp",
+    img: "/images/trabajos/IMG_4136-scaled.webp",
     height: 'short'
   },
   {
@@ -66,7 +66,7 @@ const trabajos = [
     category: "Patrimonio",
     location: "Orihuela",
     year: "2023",
-    img: "https://quarzorehabilitaciones.es/wp-content/uploads/2024/12/IMG_4123-scaled.webp",
+    img: "/images/trabajos/IMG_4123-scaled.webp",
     height: 'medium'
   },
   {
@@ -75,7 +75,7 @@ const trabajos = [
     category: "Vertical",
     location: "Alicante",
     year: "2024",
-    img: "https://quarzorehabilitaciones.es/wp-content/uploads/2025/05/IMG_20230926_081639-scaled.jpg",
+    img: "/images/trabajos/IMG_20230926_081639-scaled.jpg",
     height: 'tall'
   },
   {
@@ -84,7 +84,7 @@ const trabajos = [
     category: "Rehabilitación",
     location: "Novelda",
     year: "2023",
-    img: "https://quarzorehabilitaciones.es/wp-content/uploads/2024/12/IMG_4082-scaled.webp",
+    img: "/images/trabajos/IMG_4082-scaled.webp",
     height: 'short'
   },
   {
@@ -93,7 +93,7 @@ const trabajos = [
     category: "SATE",
     location: "Aspe",
     year: "2024",
-    img: "https://quarzorehabilitaciones.es/wp-content/uploads/2025/05/20241023_100959906_iOS_0-scaled.jpeg",
+    img: "/images/trabajos/20241023_100959906_iOS_0-scaled.jpeg",
     height: 'medium'
   },
   {
@@ -102,7 +102,7 @@ const trabajos = [
     category: "Rehabilitación",
     location: "Elche",
     year: "2024",
-    img: "https://quarzorehabilitaciones.es/wp-content/uploads/2024/12/IMG_4136-scaled.webp",
+    img: "/images/trabajos/IMG_4136-scaled.webp",
     height: 'tall'
   },
   {
@@ -111,7 +111,7 @@ const trabajos = [
     category: "Vertical",
     location: "Santa Pola",
     year: "2023",
-    img: "https://quarzorehabilitaciones.es/wp-content/uploads/2024/12/IMG_4123-scaled.webp",
+    img: "/images/trabajos/IMG_4123-scaled.webp",
     height: 'medium'
   }
 ];
@@ -192,7 +192,7 @@ export default function TrabajosPage() {
         >
           <div className="absolute inset-0 bg-gradient-to-b from-[#141414]/60 via-[#141414]/40 to-[#141414] z-10" />
           <img
-            src="https://quarzorehabilitaciones.es/wp-content/uploads/2024/12/IMG_4136-scaled.webp"
+            src="/images/trabajos/IMG_4136-scaled.webp"
             alt="Portfolio"
             className="w-full h-full object-cover"
           />

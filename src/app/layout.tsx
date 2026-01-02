@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     description: "Especialistas en rehabilitación de fachadas, SATE, trabajos verticales y restauración de patrimonio. Más de 30 años de experiencia en Elche y Alicante.",
     images: [
       {
-        url: "https://quarzorehabilitaciones.es/wp-content/uploads/2024/12/IMG_4136-scaled.webp",
+        url: "https://www.quarzorehabilitaciones.es/images/trabajos/IMG_4136-scaled.webp",
         width: 1200,
         height: 630,
         alt: "Quarzo Rehabilitaciones - Rehabilitación de Fachadas",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Quarzo Rehabilitaciones | Rehabilitación de Fachadas",
     description: "Especialistas en rehabilitación de fachadas en Elche y Alicante",
-    images: ["https://quarzorehabilitaciones.es/wp-content/uploads/2024/12/IMG_4136-scaled.webp"],
+    images: ["https://www.quarzorehabilitaciones.es/images/trabajos/IMG_4136-scaled.webp"],
   },
   alternates: {
     canonical: "https://quarzorehabilitaciones.es",
