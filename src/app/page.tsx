@@ -117,43 +117,147 @@ const Navbar = ({ toggleMenu, isMenuOpen }: { toggleMenu: () => void; isMenuOpen
   </motion.header>
 );
 
-const FullScreenMenu = ({ isOpen, toggle }: { isOpen: boolean; toggle: () => void }) => (
-  <AnimatePresence>
-    {isOpen && (
-      <motion.div
-        initial={{ clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }}
-        animate={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
-        exit={{ clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" }}
-        transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-        className="fixed inset-0 bg-[#141414] z-40 flex flex-col justify-center items-center text-[#E6E5E1]"
-      >
-        <div className="flex flex-col gap-0 text-center mix-blend-difference">
-          {[
-            { name: 'Trabajos', href: '/trabajos' },
-            { name: 'Servicios', href: '/#servicios' },
-            { name: 'Contacto', href: '/contacto' }
-          ].map((item, i) => (
-            <div key={item.name} className="overflow-hidden group">
-                <motion.div
-                  initial={{ y: "110%" }}
-                  animate={{ y: 0 }}
-                  transition={{ delay: 0.2 + (i * 0.1), duration: 0.8 }}
+const FullScreenMenu = ({ isOpen, toggle }: { isOpen: boolean; toggle: () => void }) => {
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
+
+  const menuItems = [
+    { name: 'Trabajos', href: '/trabajos' },
+    {
+      name: 'Servicios',
+      href: '/#servicios',
+      submenu: [
+        { name: 'SATE', href: '/servicios/sate' },
+        { name: 'Trabajos Verticales', href: '/servicios/trabajos-verticales' },
+        { name: 'Rehabilitación Fachadas', href: '/servicios/rehabilitacion-fachadas' },
+        { name: 'Restauración Patrimonio', href: '/servicios/restauracion-patrimonio' },
+      ]
+    },
+    { name: 'Contacto', href: '/contacto' }
+  ];
+
+  const handleItemClick = (item: typeof menuItems[0]) => {
+    if (item.submenu) {
+      setActiveSubmenu(item.name);
+    } else {
+      toggle();
+    }
+  };
+
+  const handleBack = () => {
+    setActiveSubmenu(null);
+  };
+
+  // Reset submenu when menu closes
+  React.useEffect(() => {
+    if (!isOpen) setActiveSubmenu(null);
+  }, [isOpen]);
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }}
+          animate={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
+          exit={{ clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)" }}
+          transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+          className="fixed inset-0 bg-[#141414] z-40 flex flex-col justify-center items-center text-[#E6E5E1]"
+        >
+          <AnimatePresence mode="wait">
+            {!activeSubmenu ? (
+              // Main menu
+              <motion.div
+                key="main"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col gap-0 text-center"
+              >
+                {menuItems.map((item, i) => (
+                  <div key={item.name} className="overflow-hidden group">
+                    <motion.div
+                      initial={{ y: "110%" }}
+                      animate={{ y: 0 }}
+                      transition={{ delay: 0.2 + (i * 0.1), duration: 0.8 }}
+                    >
+                      {item.submenu ? (
+                        <button
+                          onClick={() => handleItemClick(item)}
+                          className="block text-[12vw] md:text-[8vw] font-serif italic leading-[0.85] hover:text-white/50 transition-colors cursor-pointer interactive"
+                        >
+                          {item.name}
+                          <span className="text-[6vw] md:text-[4vw] ml-2 opacity-50">→</span>
+                        </button>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          onClick={toggle}
+                          className="block text-[12vw] md:text-[8vw] font-serif italic leading-[0.85] hover:text-white/50 transition-colors cursor-pointer interactive"
+                        >
+                          {item.name}
+                        </Link>
+                      )}
+                    </motion.div>
+                  </div>
+                ))}
+              </motion.div>
+            ) : (
+              // Submenu
+              <motion.div
+                key="submenu"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 50 }}
+                transition={{ duration: 0.3 }}
+                className="flex flex-col gap-0 text-center w-full px-6"
+              >
+                {/* Back button */}
+                <motion.button
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.1 }}
+                  onClick={handleBack}
+                  className="flex items-center gap-2 text-[4vw] md:text-[2vw] uppercase tracking-[0.2em] mb-8 mx-auto opacity-60 hover:opacity-100 transition-opacity"
                 >
-                  <Link
-                    href={item.href}
-                    onClick={toggle}
-                    className="block text-[12vw] md:text-[8vw] font-serif italic leading-[0.85] hover:text-white/50 transition-colors cursor-pointer interactive"
-                  >
-                    {item.name}
-                  </Link>
-                </motion.div>
-            </div>
-          ))}
-        </div>
-      </motion.div>
-    )}
-  </AnimatePresence>
-);
+                  <span>←</span> Volver
+                </motion.button>
+
+                {/* Submenu title */}
+                <motion.h3
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 }}
+                  className="text-[6vw] md:text-[3vw] font-sans uppercase tracking-[0.2em] mb-8 opacity-40"
+                >
+                  {activeSubmenu}
+                </motion.h3>
+
+                {/* Submenu items */}
+                {menuItems.find(m => m.name === activeSubmenu)?.submenu?.map((subitem, i) => (
+                  <div key={subitem.name} className="overflow-hidden">
+                    <motion.div
+                      initial={{ y: "110%" }}
+                      animate={{ y: 0 }}
+                      transition={{ delay: 0.2 + (i * 0.08), duration: 0.6 }}
+                    >
+                      <Link
+                        href={subitem.href}
+                        onClick={toggle}
+                        className="block text-[8vw] md:text-[5vw] font-serif italic leading-[1.1] hover:text-white/50 transition-colors cursor-pointer interactive py-2"
+                      >
+                        {subitem.name}
+                      </Link>
+                    </motion.div>
+                  </div>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
 
 // --- HERO SECTION ---
 const Hero = () => {
