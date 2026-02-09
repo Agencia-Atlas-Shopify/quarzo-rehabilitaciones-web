@@ -301,7 +301,8 @@ const Hero = () => {
 // --- PROJECTS ---
 const ProjectGallery = () => {
     const works = [
-      { name: "Rehabilitación Fachada", type: "SATE", img: "/images/trabajos/IMG_4136-scaled.webp" },
+      { name: "Rehabilitación Fachada", type: "Rehabilitación", img: "/images/trabajos/IMG_4136-scaled.webp" },
+      { name: "Aislamiento Térmico SATE", type: "SATE", img: "/images/trabajos/sate-trabajo-1.jpeg" },
       { name: "Restauración Edificio", type: "Patrimonio", img: "/images/trabajos/IMG_4123-scaled.webp" },
       { name: "Trabajo Vertical", type: "Vertical", img: "/images/trabajos/IMG_20230926_081639-scaled.jpg" },
       { name: "Reforma Integral", type: "Restauración", img: "/images/trabajos/IMG_4082-scaled.webp" }
@@ -632,14 +633,14 @@ const Preloader = ({ onComplete }: { onComplete: () => void }) => {
             className="fixed inset-0 bg-[#E6E5E1] z-[999] flex flex-col items-center justify-center"
             exit={{ y: "-100%", transition: { duration: 1, ease: [0.76, 0, 0.24, 1] } }}
         >
-            <div className="overflow-hidden">
-                <motion.h1
+            <div className="overflow-hidden px-6">
+                <motion.img
+                    src="/logo-dark.svg"
+                    alt="Quarzo Rehabilitaciones"
                     initial={{ y: 100 }}
                     animate={{ y: 0 }}
-                    className="text-[10vw] font-sans font-bold tracking-tighter text-[#141414]"
-                >
-                    QUARZO
-                </motion.h1>
+                    className="h-12 md:h-16 lg:h-20 w-auto"
+                />
             </div>
             <div className="w-[300px] h-[1px] bg-[#141414]/20 mt-10 relative overflow-hidden">
                 <motion.div
