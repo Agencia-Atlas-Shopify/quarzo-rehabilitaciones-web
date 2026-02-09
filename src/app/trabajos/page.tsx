@@ -113,6 +113,24 @@ const trabajos = [
     year: "2023",
     img: "/images/trabajos/IMG_4123-scaled.webp",
     height: 'medium'
+  },
+  {
+    id: 13,
+    title: "Instalación SATE Fachada",
+    category: "SATE",
+    location: "Elche",
+    year: "2026",
+    img: "/images/trabajos/sate-trabajo-1.jpeg",
+    height: 'tall'
+  },
+  {
+    id: 14,
+    title: "Aislamiento SATE Edificio",
+    category: "SATE",
+    location: "Alicante",
+    year: "2026",
+    img: "/images/trabajos/sate-trabajo-2.jpeg",
+    height: 'medium'
   }
 ];
 

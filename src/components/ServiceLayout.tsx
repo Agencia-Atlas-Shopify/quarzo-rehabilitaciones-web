@@ -324,7 +324,7 @@ export default function ServiceLayout({
             <h4 className="font-bold uppercase text-sm tracking-wider mb-4 text-[#C4A484]">Contacto</h4>
             <ul className="space-y-2 text-sm opacity-70">
               <li>697 10 95 83</li>
-              <li>joseantonio@quarzorehabilitaciones.es</li>
+              <li className="text-xs break-all">joseantonio@quarzorehabilitaciones.es</li>
               <li>Carrer Inca, 40, 03206 Elx</li>
             </ul>
           </div>

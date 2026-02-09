@@ -59,12 +59,10 @@ const satePage = {
     },
   ],
   gallery: [
-    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800',
-    'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=800',
-    'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800',
-    'https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?q=80&w=800',
-    'https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?q=80&w=800',
-    'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800',
+    '/images/trabajos/sate-trabajo-1.jpeg',
+    '/images/trabajos/sate-trabajo-2.jpeg',
+    '/images/trabajos/IMG_4136-scaled.webp',
+    '/images/trabajos/20241023_100959906_iOS_0-scaled.jpeg',
   ],
   faqs: [
     {

@@ -583,7 +583,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 border-t border-[#141414]/20 pt-10 text-[#141414]">
                     <div className="flex flex-col gap-2">
                         <span className="text-[10px] uppercase tracking-[0.2em] opacity-50">Email</span>
-                        <a href="mailto:joseantonio@quarzorehabilitaciones.es" className="font-serif italic text-base md:text-xl hover:opacity-50 interactive break-all">joseantonio@quarzorehabilitaciones.es</a>
+                        <a href="mailto:joseantonio@quarzorehabilitaciones.es" className="font-serif italic text-sm md:text-base hover:opacity-50 interactive break-all">joseantonio@quarzorehabilitaciones.es</a>
                     </div>
                     <div className="flex flex-col gap-2">
                         <span className="text-[10px] uppercase tracking-[0.2em] opacity-50">Teléfono</span>
