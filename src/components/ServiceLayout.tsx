@@ -43,7 +43,7 @@ export default function ServiceLayout({
           <ArrowLeft size={20} />
           <span className="text-sm font-bold uppercase tracking-wider">Volver</span>
         </Link>
-        <Link href="/" className="text-2xl font-bold tracking-tighter uppercase">Quarzo.</Link>
+        <Link href="/"><img src="/logo.svg" alt="Quarzo Rehabilitaciones" className="h-6 md:h-8 w-auto" /></Link>
         <Link href="/contacto" className="hidden md:block text-sm font-bold uppercase tracking-wider hover:opacity-70 transition-opacity">
           Contacto
         </Link>
