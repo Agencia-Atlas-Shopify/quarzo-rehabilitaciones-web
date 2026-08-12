@@ -26,8 +26,12 @@ export const NEGOCIO = {
   provincia: 'Alicante',
   cp: '03206',
   pais: 'ES',
-  lat: 38.2623889,
-  lon: -0.7088889,
+  /* Verificadas contra el geocodificador de OpenStreetMap: 40, carrer Inca,
+     Polígon Industrial Carrús, Elx. Las que había (38.2623889, -0.7088889)
+     caían en Carrer Capità Baltasar Tristany, a más de dos kilómetros, y el
+     mapa de la página de contacto enseñaba otra dirección distinta todavía. */
+  lat: 38.2830298,
+  lon: -0.7180760,
   /* Los cuatro primeros son los que se enseñan en la web; el resto siguen
      declarados para el buscador. Altea y Calpe no estaban y son búsquedas
      locales con valor propio. */
