@@ -28,8 +28,11 @@ export const NEGOCIO = {
   pais: 'ES',
   lat: 38.2623889,
   lon: -0.7088889,
-  zonas: ['Elche', 'Alicante', 'Santa Pola', 'Crevillente', 'Novelda', 'Aspe',
-    'Orihuela', 'Torrevieja', 'Benidorm', 'Costa Blanca'],
+  /* Los cuatro primeros son los que se enseñan en la web; el resto siguen
+     declarados para el buscador. Altea y Calpe no estaban y son búsquedas
+     locales con valor propio. */
+  zonas: ['Altea', 'Benidorm', 'Calpe', 'Elche', 'Alicante', 'Santa Pola',
+    'Crevillente', 'Novelda', 'Aspe', 'Orihuela', 'Torrevieja', 'Costa Blanca'],
   redes: ['https://www.instagram.com/quarzorehabilitaciones'],
   logo: `${SITIO}/logo-dark.svg`,
   imagen: `${SITIO}/images/obra/sate-2.jpg`,

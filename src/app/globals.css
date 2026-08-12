@@ -89,7 +89,7 @@ body{ background:var(--q-papel); color:var(--q-tinta); }
 .q-rot{ font-size:var(--q-rot); letter-spacing:.1em; text-transform:uppercase; line-height:1; }
 /* Las filas que abren y cierran la página: con 11 px quedaban de nota al pie,
    cuando son las que dicen a qué se dedica la empresa y cómo llamarla. */
-.q-rot--grande{ font-size:clamp(13px,1.18vw,18px); letter-spacing:.06em; }
+.q-rot--grande{ font-size:clamp(12px,1.1vw,17px); letter-spacing:.06em; }
 .q-apag{ color:var(--q-apagado); }
 .q-it{ font-family:var(--fuente-serif),Georgia,serif; font-style:italic; font-weight:400; }
 
@@ -164,7 +164,11 @@ body.q-cargando{ overflow:hidden; }
    y las de abajo estrechas, con los cuatro extremos alineados.
    Interlínea a cero: el recorte de QUARZO incluye el rabo de la Q, que baja
    10,75 unidades bajo la línea base; con margen negativo cruzaba la R. */
-.q-marca{ display:block; width:100%; height:auto; }
+/* A sangre entre márgenes el bloqueo salía a 235 px de alto y se comía la
+   portada. Al 80% mantiene la pila justificada —las dos palabras siguen
+   midiendo lo mismo y alineando por los dos lados— pero baja a 188.
+   En una variable para poder ajustarlo sin buscar la regla. */
+.q-marca{ display:block; width:var(--q-marca-ancho,80%); height:auto; }
 .q-portada__pie{
   display:flex; flex-wrap:wrap; gap:1.4em; justify-content:space-between;
   padding-top:clamp(12px,1.6vw,24px);

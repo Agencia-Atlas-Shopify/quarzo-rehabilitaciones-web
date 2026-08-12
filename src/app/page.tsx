@@ -131,7 +131,7 @@ export default function Home() {
             </h1>
             <div className="q-portada__pie">
               <Rotulo grande>Rehabilitación de fachadas</Rotulo>
-              <Rotulo grande apagado>Elche · Alicante · Costa Blanca</Rotulo>
+              <Rotulo grande apagado>Altea · Benidorm · Calpe · Elche</Rotulo>
               <Rotulo grande apagado>Más de 30 años</Rotulo>
             </div>
           </div>
@@ -278,7 +278,7 @@ export default function Home() {
             <Rotulo grande className="q-cierre__tel">
               <Link href="tel:+34697109583">697 10 95 83</Link>
             </Rotulo>
-            <Rotulo grande apagado>Elche · Alicante</Rotulo>
+            <Rotulo grande apagado>Altea · Benidorm · Calpe · Elche</Rotulo>
             <Rotulo grande apagado>Presupuesto sin compromiso</Rotulo>
           </div>
         </section>
@@ -286,7 +286,7 @@ export default function Home() {
 
       <footer className="q-pie">
         <Rotulo>Quarzo Rehabilitaciones SLU</Rotulo>
-        <Rotulo>Elche · Alicante · Costa Blanca</Rotulo>
+        <Rotulo>Altea · Benidorm · Calpe · Elche</Rotulo>
         {/* El sello de Kit Digital estaba en la home anterior y lo había
             perdido al rehacerla. No es decoración: quien recibe esa ayuda está
             OBLIGADO por convenio a exhibir el reconocimiento de financiación

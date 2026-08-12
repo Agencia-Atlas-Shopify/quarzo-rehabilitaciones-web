@@ -181,7 +181,7 @@ export default function ServiceLayout({
           </Link>
           <div className="q-cierre__fila q-entra">
             <Rotulo grande className="q-cierre__tel"><Link href="tel:+34697109583">697 10 95 83</Link></Rotulo>
-            <Rotulo grande apagado>Elche · Alicante</Rotulo>
+            <Rotulo grande apagado>Altea · Benidorm · Calpe · Elche</Rotulo>
             <Rotulo grande apagado>Presupuesto sin compromiso</Rotulo>
           </div>
         </section>
@@ -189,7 +189,7 @@ export default function ServiceLayout({
 
       <footer className="q-pie">
         <Rotulo>Quarzo Rehabilitaciones SLU</Rotulo>
-        <Rotulo>Elche · Alicante · Costa Blanca</Rotulo>
+        <Rotulo>Altea · Benidorm · Calpe · Elche</Rotulo>
       </footer>
     </div>
   );
