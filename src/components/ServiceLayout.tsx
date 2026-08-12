@@ -1,350 +1,196 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { ArrowLeft, Phone, Mail, MapPin, CreditCard, CheckCircle } from 'lucide-react';
+/**
+ * PÁGINA DE SERVICIO
+ *
+ * Mismo registro que la home (ver quarzo.tsx). Lo que cambia respecto a la
+ * versión anterior, además del estilo:
+ *
+ *  · Las FOTOS son de obra propia. Antes eran de Unsplash: diecinueve imágenes
+ *    de edificios ajenos presentadas como trabajo de Quarzo. Eso no es una
+ *    cuestión de gusto, es lo que un cliente considera engaño cuando lo
+ *    descubre, y Google lo lee como contenido genérico.
+ *  · Emite los DATOS ESTRUCTURADOS de la página: Service, FAQPage y migas de
+ *    pan, en un único @graph. El FAQPage no existía y es el resultado
+ *    enriquecido más rentable de todos: las seis preguntas ya estaban escritas
+ *    y visibles, sólo faltaba declararlas.
+ *  · Las preguntas van en <details> nativo, no en un acordeón con estado. Se
+ *    puede abrir sin JavaScript, el buscador del navegador encuentra el texto
+ *    de dentro y Google lo indexa igual.
+ */
 
-interface ServiceLayoutProps {
+import React from 'react';
+import Link from 'next/link';
+import { Foto, Partido, Rotulo, useEntradas } from './quarzo';
+import { faqPage, grafo, migas, servicio, SITIO } from '@/lib/seo';
+
+export interface ServiceLayoutProps {
   title: string;
   subtitle: string;
   description: string;
   heroImage: string;
+  heroAlt: string;
+  slug: string;
+  tipoServicio: string;
   benefits: string[];
   process: { step: string; title: string; description: string }[];
-  gallery: string[];
+  gallery: { src: string; alt: string }[];
   faqs: { question: string; answer: string }[];
   relatedServices: { name: string; href: string }[];
-  children?: React.ReactNode;
 }
 
 export default function ServiceLayout({
-  title,
-  subtitle,
-  description,
-  heroImage,
-  benefits,
-  process,
-  gallery,
-  faqs,
-  relatedServices,
-  children
+  title, subtitle, description, heroImage, heroAlt, slug, tipoServicio,
+  benefits, process, gallery, faqs, relatedServices,
 }: ServiceLayoutProps) {
-  return (
-    <div className="bg-[#E6E5E1] min-h-screen text-[#141414]">
-      <style>{`
-        .font-sans { font-family: 'Futura', 'Helvetica Neue', sans-serif; }
-        .font-serif { font-family: 'Futura', 'Helvetica Neue', sans-serif; }
-      `}</style>
+  useEntradas();
 
-      {/* Header */}
-      <header className="fixed top-0 w-full z-50 px-6 md:px-12 py-6 flex justify-between items-center bg-[#E6E5E1]/90 backdrop-blur-sm">
-        <Link href="/" className="flex items-center gap-2 text-[#141414] hover:opacity-70 transition-opacity">
-          <ArrowLeft size={20} />
-          <span className="text-sm font-bold uppercase tracking-wider">Volver</span>
+  const datos = grafo(
+    servicio({ nombre: title, descripcion: description, href: slug, tipo: tipoServicio, imagen: heroImage }),
+    faqPage(faqs),
+    migas([{ nombre: 'Servicios', href: '/servicios' }, { nombre: title, href: slug }]),
+    {
+      '@type': 'WebPage',
+      '@id': `${SITIO}${slug}#pagina`,
+      url: `${SITIO}${slug}`,
+      name: title,
+      description,
+      isPartOf: { '@id': `${SITIO}/#sitio` },
+      primaryImageOfPage: { '@type': 'ImageObject', url: `${SITIO}${heroImage}`, caption: heroAlt },
+    },
+  );
+
+  return (
+    <div className="q-pagina">
+      <script type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(datos) }} />
+
+      <header className="q-barra">
+        <Link className="q-barra__tel q-rot" href="/">← Inicio</Link>
+        <Link className="q-barra__marca is-visible" href="/" aria-label="Quarzo Rehabilitaciones — inicio">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="q-barra__logo" src="/logo-linea-blanco.svg" alt="" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="q-barra__logo q-barra__logo--apilado" src="/logo.svg" alt="" />
         </Link>
-        <Link href="/"><img src="/logo-dark.svg" alt="Quarzo Rehabilitaciones" className="h-6 md:h-8 w-auto" /></Link>
-        <Link href="/contacto" className="hidden md:block text-sm font-bold uppercase tracking-wider hover:opacity-70 transition-opacity">
-          Contacto
-        </Link>
+        <Link className="q-barra__menu q-rot" href="/contacto">Presupuesto</Link>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative h-[70vh] flex items-end">
-        <div className="absolute inset-0">
-          <img src={heroImage} alt={title} className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#141414]/80 via-[#141414]/30 to-transparent" />
-        </div>
-        <div className="relative z-10 p-6 md:p-12 pb-16 max-w-4xl">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-[#C4A484] text-sm font-bold uppercase tracking-[0.2em] mb-4 block"
-          >
-            {subtitle}
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[0.95] tracking-tight mb-6"
-          >
-            {title}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed"
-          >
-            {description}
-          </motion.p>
-        </div>
-      </section>
+      <main>
+        {/* Migas visibles, no sólo en el JSON-LD: Google pide que lo que
+            declaras esté también en la página. */}
+        <nav className="q-migas" aria-label="Migas de pan">
+          <Link className="q-rot q-apag" href="/">Inicio</Link>
+          <span className="q-rot q-apag" aria-hidden="true">/</span>
+          <span className="q-rot">{title}</span>
+        </nav>
 
-      {/* Benefits Section */}
-      <section className="py-20 px-6 md:px-12 bg-[#E6E5E1]">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 tracking-tight">
-            ¿Por qué elegir nuestro servicio?
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="flex gap-4"
-              >
-                <span className="text-[#C4A484] text-2xl font-bold">0{i + 1}</span>
-                <p className="text-lg leading-relaxed">{benefit}</p>
-              </motion.div>
+        <section className="q-serv-portada">
+          <h1 className="q-serv-titulo">{title}</h1>
+          <p className="q-serv-sub q-it">{subtitle}</p>
+        </section>
+
+        <section className="q-banda">
+          <Foto src={heroImage} alt={heroAlt} ratio="16/9" sizes="100vw" prioridad />
+        </section>
+
+        <section className="q-dos" style={{ paddingTop: 'clamp(52px,9vw,150px)' }}>
+          <div className="q-entra"><Rotulo>El servicio</Rotulo></div>
+          <p className="q-lead q-entra" style={{ maxWidth: '34ch' }}>{description}</p>
+        </section>
+
+        {/* ---------- Por qué ---------- */}
+        <Partido recto="Por" italica="qué" />
+        <section className="q-obra">
+          <ul className="q-pasos q-entra">
+            {benefits.map((b, i) => (
+              <li className="q-paso" key={b}>
+                <Rotulo apagado className="q-paso__n">{String(i + 1).padStart(2, '0')}</Rotulo>
+                <p className="q-paso__d" style={{ marginTop: 0, maxWidth: '68ch' }}>{b}</p>
+              </li>
             ))}
-          </div>
-        </div>
-      </section>
+          </ul>
+        </section>
 
-      {/* Financing Highlight Section */}
-      <section className="bg-gradient-to-r from-[#C4A484] to-[#a88b6b] overflow-hidden">
-        {/* Marquee infinito */}
-        <div className="bg-[#141414] py-2 overflow-hidden">
-          <div className="animate-marquee">
-            {[...Array(2)].map((_, setIndex) => (
-              <div key={setIndex} className="flex shrink-0">
-                {[...Array(6)].map((_, i) => (
-                  <span key={i} className="mx-8 text-sm font-medium text-[#C4A484] uppercase tracking-wider whitespace-nowrap">
-                    Financiación propia sin intereses* · Hasta 36 meses · Sin bancos · 0% interés ·
-                  </span>
+        {/* ---------- Cómo ---------- */}
+        <Partido recto="Cómo" italica="se hace" />
+        <section className="q-obra">
+          <ol className="q-pasos q-entra">
+            {process.map((p) => (
+              <li className="q-paso" key={p.step}>
+                <Rotulo apagado className="q-paso__n">{p.step}</Rotulo>
+                <div>
+                  <div className="q-paso__t">{p.title}</div>
+                  <p className="q-paso__d">{p.description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        {/* ---------- Obra ---------- */}
+        {gallery.length > 0 && (
+          <>
+            <Partido recto="Obra" italica="ejecutada" />
+            <section className="q-obra">
+              <div className="q-rejilla">
+                {gallery.map((g, i) => (
+                  <div className="q-entra" key={g.src + i}>
+                    <Foto src={g.src} alt={g.alt} ratio="4/3" sizes="(max-width:860px) 100vw, 33vw" />
+                  </div>
                 ))}
               </div>
-            ))}
-          </div>
-        </div>
+            </section>
+          </>
+        )}
 
-        <div className="py-12 px-6 md:px-12">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-12"
-            >
-              <div className="flex items-center gap-4">
-                <div className="bg-[#141414] p-4 rounded-full">
-                  <CreditCard className="w-8 h-8 text-[#C4A484]" />
-                </div>
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-[#141414]">
-                    Financiación Propia*
-                  </h3>
-                  <p className="text-lg text-[#141414]/80 font-medium">
-                    Sin intereses · Sin bancos
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 text-[#141414]">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5" />
-                  <span className="font-medium">Hasta 36 meses</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5" />
-                  <span className="font-medium">0% interés</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5" />
-                  <span className="font-medium">Sin comisiones</span>
-                </div>
-              </div>
-              <Link
-                href="/contacto"
-                className="bg-[#141414] text-[#E6E5E1] px-6 py-3 font-bold uppercase tracking-wider text-sm hover:bg-[#141414]/80 transition-colors whitespace-nowrap"
-              >
-                Consulta Condiciones
-              </Link>
-            </motion.div>
-            <p className="text-center text-sm text-[#141414]/60 mt-6">
-              *Sujeto a valoración de cada proyecto individual
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-20 px-6 md:px-12 bg-[#141414] text-[#E6E5E1]">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
-            Nuestro Proceso de Trabajo
-          </h2>
-          <p className="text-lg opacity-60 mb-16 max-w-2xl">
-            Un enfoque metódico y profesional para garantizar resultados excepcionales en cada proyecto.
-          </p>
-          <div className="space-y-12">
-            {process.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="flex gap-8 items-start border-t border-white/10 pt-8"
-              >
-                <span className="text-[#C4A484] text-sm font-mono">{item.step}</span>
-                <div>
-                  <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
-                  <p className="text-lg opacity-70 max-w-xl">{item.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Gallery Section */}
-      <section className="py-20 px-6 md:px-12 bg-[#E6E5E1]">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 tracking-tight">
-            Proyectos Realizados
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {gallery.map((img, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: i * 0.1 }}
-                className="aspect-[4/3] overflow-hidden"
-              >
-                <img
-                  src={img}
-                  alt={`Proyecto ${title} ${i + 1}`}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQs Section */}
-      <section className="py-20 px-6 md:px-12 bg-[#1a1a1e] text-[#E6E5E1]">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 tracking-tight">
-            Preguntas Frecuentes
-          </h2>
-          <div className="space-y-6">
-            {faqs.map((faq, i) => (
-              <motion.details
-                key={i}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                className="group border-b border-white/10 pb-6"
-              >
-                <summary className="text-xl font-bold cursor-pointer list-none flex justify-between items-center">
-                  {faq.question}
-                  <span className="text-[#C4A484] group-open:rotate-45 transition-transform">+</span>
+        {/* ---------- Preguntas ---------- */}
+        <Partido recto="Preguntas" italica="frecuentes" />
+        <section className="q-obra">
+          <div className="q-faqs q-entra">
+            {faqs.map((f) => (
+              <details className="q-faq" key={f.question}>
+                <summary className="q-faq__p">
+                  <span>{f.question}</span>
+                  <span className="q-faq__mas" aria-hidden="true">+</span>
                 </summary>
-                <p className="mt-4 text-lg opacity-70 leading-relaxed">{faq.answer}</p>
-              </motion.details>
+                <p className="q-faq__r">{f.answer}</p>
+              </details>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Related Services */}
-      <section className="py-20 px-6 md:px-12 bg-[#E6E5E1]">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 tracking-tight">
-            Otros Servicios
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {relatedServices.map((service, i) => (
-              <Link
-                key={i}
-                href={service.href}
-                className="group p-8 border border-[#141414]/10 hover:bg-[#141414] hover:text-[#E6E5E1] transition-all duration-500"
-              >
-                <span className="text-sm text-[#C4A484] font-mono mb-4 block">0{i + 1}</span>
-                <h3 className="text-2xl font-bold group-hover:translate-x-2 transition-transform">
-                  {service.name}
-                </h3>
+        {/* ---------- Otros servicios ---------- */}
+        <Partido recto="Otros" italica="servicios" />
+        <section className="q-obra">
+          <div className="q-pasos q-entra">
+            {relatedServices.map((s, i) => (
+              <Link className="q-paso q-otro" href={s.href} key={s.href}>
+                <Rotulo apagado className="q-paso__n">{String(i + 1).padStart(2, '0')}</Rotulo>
+                <span className="q-paso__t">{s.name}</span>
               </Link>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-6 md:px-12 bg-[#C4A484]">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-[#141414]">
-            ¿Necesitas un presupuesto?
-          </h2>
-          <p className="text-xl mb-10 text-[#141414]/70">
-            Contacta con nosotros para una evaluación gratuita de tu proyecto
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="tel:+34697109583"
-              className="inline-flex items-center justify-center gap-2 bg-[#141414] text-[#E6E5E1] px-8 py-4 font-bold uppercase tracking-wider hover:bg-[#141414]/80 transition-colors"
-            >
-              <Phone size={18} />
-              Llamar Ahora
-            </a>
-            <Link
-              href="/contacto"
-              className="inline-flex items-center justify-center gap-2 border-2 border-[#141414] text-[#141414] px-8 py-4 font-bold uppercase tracking-wider hover:bg-[#141414] hover:text-[#E6E5E1] transition-colors"
-            >
-              <Mail size={18} />
-              Solicitar Presupuesto
-            </Link>
+        {/* ---------- Cierre ---------- */}
+        <Partido recto="Cuéntanos" italica="tu edificio" />
+        <section className="q-cierre">
+          <Link className="q-cierre__mail q-entra" href="mailto:joseantonio@quarzorehabilitaciones.es">
+            joseantonio@quarzorehabilitaciones.es
+          </Link>
+          <div className="q-cierre__fila q-entra">
+            <Rotulo grande className="q-cierre__tel"><Link href="tel:+34697109583">697 10 95 83</Link></Rotulo>
+            <Rotulo grande apagado>Elche · Alicante</Rotulo>
+            <Rotulo grande apagado>Presupuesto sin compromiso</Rotulo>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
-      {/* Footer */}
-      <footer className="bg-[#141414] text-[#E6E5E1] py-16 px-6 md:px-12">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-10">
-          <div>
-            <h3 className="text-2xl font-bold mb-4">Quarzo.</h3>
-            <p className="text-sm opacity-60">
-              Especialistas en rehabilitación de edificios en Elche y toda la provincia de Alicante.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-bold uppercase text-sm tracking-wider mb-4 text-[#C4A484]">Servicios</h4>
-            <ul className="space-y-2 text-sm opacity-70">
-              <li><Link href="/servicios/sate" className="hover:opacity-100">SATE</Link></li>
-              <li><Link href="/servicios/trabajos-verticales" className="hover:opacity-100">Trabajos Verticales</Link></li>
-              <li><Link href="/servicios/rehabilitacion-fachadas" className="hover:opacity-100">Rehabilitación Fachadas</Link></li>
-              <li><Link href="/servicios/restauracion-patrimonio" className="hover:opacity-100">Restauración Patrimonio</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold uppercase text-sm tracking-wider mb-4 text-[#C4A484]">Contacto</h4>
-            <ul className="space-y-2 text-sm opacity-70">
-              <li>697 10 95 83</li>
-              <li className="text-xs break-all">joseantonio@quarzorehabilitaciones.es</li>
-              <li>Carrer Inca, 40, 03206 Elx</li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold uppercase text-sm tracking-wider mb-4 text-[#C4A484]">Zona de Trabajo</h4>
-            <p className="text-sm opacity-70">
-              Elche, Alicante, Santa Pola, Crevillente, Novelda, Aspe, Orihuela y toda la Costa Blanca.
-            </p>
-          </div>
-        </div>
-        <div className="max-w-6xl mx-auto mt-12 pt-8 border-t border-white/10 text-sm opacity-40 flex flex-col md:flex-row justify-between items-center gap-4">
-          <span>© Quarzo Rehabilitaciones 2025</span>
-          <img src="/images/kit-digital-next-generation.png" alt="Kit Digital - Financiado por la Unión Europea Next Generation EU" className="h-12 w-auto" />
-          <a href="https://theatlas.es" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 transition-opacity">
-            Creado por Atlas Agencia E-Commerce
-          </a>
-        </div>
+      <footer className="q-pie">
+        <Rotulo>Quarzo Rehabilitaciones SLU</Rotulo>
+        <Rotulo>Elche · Alicante · Costa Blanca</Rotulo>
       </footer>
-
-      {children}
     </div>
   );
 }

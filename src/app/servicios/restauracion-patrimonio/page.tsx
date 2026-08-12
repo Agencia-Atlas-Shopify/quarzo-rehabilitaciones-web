@@ -22,7 +22,10 @@ const restauracionPatrimonioPage = {
   title: 'Restauración de Patrimonio',
   subtitle: 'Conservación del Legado Arquitectónico',
   description: 'Recuperamos y preservamos edificios históricos con técnicas especializadas que respetan su valor patrimonial. Combinamos artesanía tradicional con tecnología moderna para devolver el esplendor a construcciones centenarias.',
-  heroImage: 'https://images.unsplash.com/photo-1555952494-efd681c7e3f9?q=80&w=1600',
+  heroImage: '/images/obra/andamio.jpg',
+  heroAlt: "Edificio con el andamio montado durante los trabajos de restauración",
+  slug: '/servicios/restauracion-patrimonio',
+  tipoServicio: "Restauración de patrimonio",
   benefits: [
     'Equipo multidisciplinar con arquitectos, restauradores y artesanos especializados en patrimonio histórico.',
     'Estudios previos exhaustivos: análisis histórico, estratigráfico, de materiales y patologías específicas.',
@@ -64,12 +67,12 @@ const restauracionPatrimonioPage = {
     },
   ],
   gallery: [
-    'https://images.unsplash.com/photo-1555952494-efd681c7e3f9?q=80&w=800',
-    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800',
-    'https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?q=80&w=800',
-    'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800',
-    'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=800',
-    'https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=800',
+    { src: '/images/obra/andamio.jpg', alt: "Andamio montado sobre el edificio durante la restauración" },
+    { src: '/images/obra/forjado.jpg', alt: "Canto de forjado antes de la restauración" },
+    { src: '/images/obra/patologia.jpg', alt: "Armadura vista en un elemento de hormigón deteriorado" },
+    { src: '/images/obra/bloque.jpg', alt: "Edificio antes de la intervención" },
+    { src: '/images/obra/terminado.jpg', alt: "Fachada restaurada" },
+    { src: '/images/obra/fachada.jpg', alt: "Detalle de la fachada tras la restauración" },
   ],
   faqs: [
     {
@@ -105,35 +108,5 @@ const restauracionPatrimonioPage = {
 };
 
 export default function RestauracionPatrimonioPage() {
-  return (
-    <ServiceLayout {...restauracionPatrimonioPage}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            name: 'Restauración de Patrimonio Histórico en Elche y Alicante',
-            description: 'Servicio especializado de restauración de edificios históricos y patrimonio arquitectónico. Técnicas tradicionales y modernas para la conservación del legado cultural.',
-            provider: {
-              '@type': 'LocalBusiness',
-              name: 'Quarzo Rehabilitaciones',
-              address: {
-                '@type': 'PostalAddress',
-                streetAddress: 'Carrer Inca, 40',
-                addressLocality: 'Elx',
-                addressRegion: 'Alicante',
-                postalCode: '03206',
-                addressCountry: 'ES'
-              },
-              telephone: '+34697109583',
-              priceRange: '€€€'
-            },
-            areaServed: ['Elche', 'Alicante', 'Santa Pola', 'Crevillente', 'Costa Blanca'],
-            serviceType: 'Restauración de Patrimonio'
-          })
-        }}
-      />
-    </ServiceLayout>
-  );
+  return <ServiceLayout {...restauracionPatrimonioPage} />;
 }

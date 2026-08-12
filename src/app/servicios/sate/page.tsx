@@ -22,7 +22,10 @@ const satePage = {
   title: 'Sistema SATE',
   subtitle: 'Aislamiento Térmico por el Exterior',
   description: 'Instalamos sistemas de aislamiento térmico por el exterior (SATE) en Elche, Alicante y toda la provincia. Reduce el consumo energético de tu edificio hasta un 70% y mejora el confort térmico durante todo el año.',
-  heroImage: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1600',
+  heroImage: '/images/obra/sate-2.jpg',
+  heroAlt: "Edificio de viviendas a media intervención: media fachada con el ladrillo original y media ya con el aislamiento térmico colocado",
+  slug: '/servicios/sate',
+  tipoServicio: "Aislamiento térmico por el exterior",
   benefits: [
     'Reducción del consumo energético entre un 50% y 70%, lo que se traduce en un importante ahorro en las facturas de luz y gas.',
     'Eliminación de puentes térmicos y humedades por condensación, mejorando la salubridad y durabilidad del edificio.',
@@ -59,10 +62,12 @@ const satePage = {
     },
   ],
   gallery: [
-    '/images/trabajos/sate-trabajo-1.jpeg',
-    '/images/trabajos/sate-trabajo-2.jpeg',
-    '/images/trabajos/IMG_4136-scaled.webp',
-    '/images/trabajos/20241023_100959906_iOS_0-scaled.jpeg',
+    { src: '/images/obra/sate-1.jpg', alt: "Panel de aislamiento térmico por el exterior fijado sobre la fachada existente" },
+    { src: '/images/obra/sate-2.jpg', alt: "Fachada con el sistema SATE a medio colocar, con el ladrillo original todavía a la vista" },
+    { src: '/images/obra/terminado.jpg', alt: "Bloque residencial con la fachada terminada tras el aislamiento" },
+    { src: '/images/obra/fachada.jpg', alt: "Fachada rehabilitada de un edificio de viviendas en la Costa Blanca" },
+    { src: '/images/obra/bloque.jpg', alt: "Bloque de viviendas antes de la intervención" },
+    { src: '/images/obra/andamio.jpg', alt: "Edificio con el andamio montado durante los trabajos" },
   ],
   faqs: [
     {
@@ -101,33 +106,6 @@ export default function SATEPage() {
   return (
     <ServiceLayout {...satePage}>
       {/* Schema.org structured data for SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            name: 'Instalación de SATE en Elche y Alicante',
-            description: 'Servicio profesional de instalación de Sistema de Aislamiento Térmico por el Exterior (SATE) para edificios residenciales y comerciales.',
-            provider: {
-              '@type': 'LocalBusiness',
-              name: 'Quarzo Rehabilitaciones',
-              address: {
-                '@type': 'PostalAddress',
-                streetAddress: 'Carrer Inca, 40',
-                addressLocality: 'Elx',
-                addressRegion: 'Alicante',
-                postalCode: '03206',
-                addressCountry: 'ES'
-              },
-              telephone: '+34697109583',
-              priceRange: '€€'
-            },
-            areaServed: ['Elche', 'Alicante', 'Santa Pola', 'Crevillente', 'Costa Blanca'],
-            serviceType: 'Aislamiento Térmico por el Exterior'
-          })
-        }}
-      />
     </ServiceLayout>
   );
 }

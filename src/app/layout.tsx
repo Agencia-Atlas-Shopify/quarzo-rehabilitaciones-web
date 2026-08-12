@@ -1,5 +1,25 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
+
+/* Tipografías del sistema. La referencia usa Suisse Intl + Suisse Works, que
+   son de pago; estos dos son los sustitutos libres con el mismo color de
+   página. Se sirven desde el propio dominio (next/font las descarga en el
+   build), así que no hay petición a Google en tiempo de ejecución ni el aviso
+   de cookies que eso arrastraría. */
+const grotesca = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--fuente-sans",
+  display: "swap",
+});
+const italica = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: "italic",
+  variable: "--fuente-serif",
+  display: "swap",
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -76,7 +96,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" className={`${grotesca.variable} ${italica.variable}`}>
       <body>
         {children}
       </body>

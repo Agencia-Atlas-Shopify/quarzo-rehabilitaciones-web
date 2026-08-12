@@ -1,5 +1,7 @@
 'use client';
 
+import Datos from '@/components/Datos';
+import { grafo, migas, SITIO } from '@/lib/seo';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
@@ -143,6 +145,22 @@ const heightClasses: Record<string, string> = {
   short: 'h-[280px] md:h-[350px]'
 };
 
+/* La página de trabajos es una colección de imágenes de obra. Declararla como
+   tal es lo que la mete en Google Imágenes y le da migas de pan. Antes no
+   emitía ni un dato estructurado. */
+const DATOS = grafo(
+  {
+    '@type': 'CollectionPage',
+    '@id': `${SITIO}/trabajos#pagina`,
+    url: `${SITIO}/trabajos`,
+    name: 'Trabajos de rehabilitación ejecutados',
+    description: 'Obras de rehabilitación de fachadas, aislamiento SATE, trabajos verticales y restauración ejecutadas por Quarzo Rehabilitaciones en Elche, Alicante y la Costa Blanca.',
+    isPartOf: { '@id': `${SITIO}/#sitio` },
+    about: { '@id': `${SITIO}/#negocio` },
+  },
+  migas([{ nombre: 'Trabajos', href: '/trabajos' }]),
+);
+
 export default function TrabajosPage() {
   const [filter, setFilter] = useState("Todos");
   const [selectedWork, setSelectedWork] = useState<typeof trabajos[0] | null>(null);
@@ -182,6 +200,7 @@ export default function TrabajosPage() {
 
   return (
     <div className="min-h-screen bg-[#141414]" ref={containerRef}>
+      <Datos datos={DATOS} />
       {/* Header */}
       <motion.header
         style={{ backgroundColor: headerBg }}

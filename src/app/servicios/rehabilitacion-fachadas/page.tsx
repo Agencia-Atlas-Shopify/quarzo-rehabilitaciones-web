@@ -22,7 +22,10 @@ const rehabilitacionFachadasPage = {
   title: 'Rehabilitación de Fachadas',
   subtitle: 'Restauración Integral de Edificios',
   description: 'Devolvemos la vida a las fachadas deterioradas con soluciones integrales que combinan reparación estructural, tratamiento de humedades, aislamiento y acabados estéticos de primera calidad.',
-  heroImage: 'https://images.unsplash.com/photo-1486718448742-163732cd1544?q=80&w=1600',
+  heroImage: '/images/obra/terminado.jpg',
+  heroAlt: "Fachada de un bloque de viviendas ya rehabilitada, con el revoco y la pintura nuevos",
+  slug: '/servicios/rehabilitacion-fachadas',
+  tipoServicio: "Rehabilitación de fachadas",
   benefits: [
     'Diagnóstico completo del estado de la fachada mediante inspección técnica y pruebas específicas para identificar todas las patologías.',
     'Soluciones personalizadas adaptadas a las características constructivas y estéticas de cada edificio.',
@@ -64,12 +67,12 @@ const rehabilitacionFachadasPage = {
     },
   ],
   gallery: [
-    '/images/trabajos/IMG_4136-scaled.webp',
-    '/images/trabajos/IMG_4123-scaled.webp',
-    '/images/trabajos/IMG_4082-scaled.webp',
-    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800',
-    'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=800',
-    'https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=800',
+    { src: '/images/obra/patologia.jpg', alt: "Voladizo de hormigón con el recubrimiento desprendido y la armadura oxidada a la vista" },
+    { src: '/images/obra/forjado.jpg', alt: "Canto de forjado deteriorado antes de intervenir" },
+    { src: '/images/obra/andamio.jpg', alt: "Edificio con el andamio montado durante la rehabilitación" },
+    { src: '/images/obra/fachada.jpg', alt: "Fachada rehabilitada de un edificio de viviendas" },
+    { src: '/images/obra/terminado.jpg', alt: "Bloque residencial con la fachada terminada" },
+    { src: '/images/obra/bloque.jpg', alt: "Bloque de viviendas antes de la intervención" },
   ],
   faqs: [
     {
@@ -105,35 +108,5 @@ const rehabilitacionFachadasPage = {
 };
 
 export default function RehabilitacionFachadasPage() {
-  return (
-    <ServiceLayout {...rehabilitacionFachadasPage}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            name: 'Rehabilitación de Fachadas en Elche y Alicante',
-            description: 'Servicio profesional de rehabilitación integral de fachadas para edificios residenciales y comerciales. Reparación de grietas, humedades, pintura y restauración.',
-            provider: {
-              '@type': 'LocalBusiness',
-              name: 'Quarzo Rehabilitaciones',
-              address: {
-                '@type': 'PostalAddress',
-                streetAddress: 'Carrer Inca, 40',
-                addressLocality: 'Elx',
-                addressRegion: 'Alicante',
-                postalCode: '03206',
-                addressCountry: 'ES'
-              },
-              telephone: '+34697109583',
-              priceRange: '€€'
-            },
-            areaServed: ['Elche', 'Alicante', 'Santa Pola', 'Crevillente', 'Costa Blanca'],
-            serviceType: 'Rehabilitación de Fachadas'
-          })
-        }}
-      />
-    </ServiceLayout>
-  );
+  return <ServiceLayout {...rehabilitacionFachadasPage} />;
 }

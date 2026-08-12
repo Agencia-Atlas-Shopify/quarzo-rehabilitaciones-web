@@ -505,6 +505,37 @@ export default function ContactoPage() {
           })
         }}
       />
+
+      {/* ContactPage y migas de pan, aparte del LocalBusiness de arriba. Van
+          en su propio bloque y no dentro del anterior: meterlos ahí obliga a
+          convertirlo en un @graph y a mover el @type, y esa página ya está
+          publicada e indexada. Dos bloques son válidos y no se pisan. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@graph': [
+              {
+                '@type': 'ContactPage',
+                '@id': 'https://quarzorehabilitaciones.es/contacto#pagina',
+                url: 'https://quarzorehabilitaciones.es/contacto',
+                name: 'Contacto y presupuesto — Quarzo Rehabilitaciones',
+                description: 'Pide presupuesto sin compromiso para la rehabilitación de tu edificio en Elche, Alicante o la Costa Blanca.',
+                about: { '@id': 'https://quarzorehabilitaciones.es/#negocio' },
+                inLanguage: 'es-ES',
+              },
+              {
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                  { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://quarzorehabilitaciones.es' },
+                  { '@type': 'ListItem', position: 2, name: 'Contacto', item: 'https://quarzorehabilitaciones.es/contacto' },
+                ],
+              },
+            ],
+          })
+        }}
+      />
     </div>
   );
 }

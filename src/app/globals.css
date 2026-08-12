@@ -60,3 +60,353 @@ body {
   width: max-content;
   animation: marquee 40s linear infinite;
 }
+
+/* ==================================================================
+   SISTEMA VISUAL QUARZO — registro de estudio de arquitectura.
+   Todo lo de aquí lleva prefijo q- para no chocar con Tailwind ni con lo
+   que ya había. Ver src/components/quarzo.tsx para las reglas del sistema.
+   ================================================================== */
+:root{
+  --q-papel:#f0efeb;
+  --q-tinta:#111;
+  --q-apagado:#69727d;
+  --q-linea:rgba(17,17,17,.13);
+  --q-m:clamp(14px,2.1vw,38px);
+  --q-rot:clamp(9px,.66vw,11px);
+}
+
+body{ background:var(--q-papel); color:var(--q-tinta); }
+
+.q-pagina{
+  font-family:var(--fuente-sans),"Helvetica Neue",Arial,sans-serif;
+  font-weight:500;
+  font-size:clamp(13px,.9vw,15px);
+  line-height:1.5;
+  overflow-x:hidden;
+}
+.q-pagina a{ color:inherit; text-decoration:none; }
+
+.q-rot{ font-size:var(--q-rot); letter-spacing:.1em; text-transform:uppercase; line-height:1; }
+/* Las filas que abren y cierran la página: con 11 px quedaban de nota al pie,
+   cuando son las que dicen a qué se dedica la empresa y cómo llamarla. */
+.q-rot--grande{ font-size:clamp(13px,1.18vw,18px); letter-spacing:.06em; }
+.q-apag{ color:var(--q-apagado); }
+.q-it{ font-family:var(--fuente-serif),Georgia,serif; font-style:italic; font-weight:400; }
+
+/* El selector va cualificado con .q-pagina a propósito: la regla de arriba
+   `.q-pagina a{color:inherit}` tiene más especificidad (0,1,1 frente a 0,1,0)
+   y le pisaba el color al botón, que salía con texto negro sobre fondo negro. */
+.q-pagina a.q-pildora,
+.q-pildora{
+  display:inline-block; background:var(--q-tinta); color:var(--q-papel);
+  border-radius:99px; padding:.85em 1.5em;
+  font-size:var(--q-rot); letter-spacing:.1em; text-transform:uppercase;
+  transition:opacity .3s;
+}
+.q-pildora:hover{ opacity:.72; }
+.q-pagina a.q-pildora--hueca,
+.q-pildora--hueca{ background:none; color:var(--q-tinta); border:1px solid var(--q-linea); }
+
+/* Cruces de registro. El "+" va dibujado a 9 px dentro de un lienzo de 160:
+   al escalar la celda a 11vw la cruz se mantiene diminuta. Dibujarla del
+   tamaño del lienzo la convertía en una retícula que se comía la página.
+   z-index negativo, no subir todo lo demás: una regla `body > *` acabó
+   pisándole el position:fixed a la cabecera. */
+.q-cruces{
+  position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cpath d='M80 75.5v9M75.5 80h9' stroke='%2369727d' stroke-width='1.1'/%3E%3C/svg%3E");
+  background-size:11.11vw 11.11vw; background-position:center; opacity:.3;
+}
+
+/* ---------- Entrada ---------- */
+.q-intro{
+  position:fixed; inset:0; z-index:55; background:var(--q-papel);
+  display:grid; place-items:center; transition:opacity .55s ease;
+}
+.q-intro__caja{ overflow:hidden; transition:width .16s linear,height .16s linear; }
+.q-intro__caja.is-abriendo{
+  transition:width .85s cubic-bezier(.65,0,.2,1),height .85s cubic-bezier(.65,0,.2,1);
+}
+.q-intro__caja img{ width:100%; height:100%; object-fit:cover; display:block; }
+.q-intro.is-fuera{ opacity:0; pointer-events:none; }
+body.q-cargando{ overflow:hidden; }
+
+/* ---------- Barra ---------- */
+.q-barra{
+  position:fixed; top:0; left:0; right:0; z-index:60;
+  display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
+  padding:clamp(11px,1.4vw,20px) var(--q-m);
+  mix-blend-mode:difference; color:#fff; pointer-events:none;
+}
+.q-barra > *{ pointer-events:auto; }
+.q-barra__tel{ justify-self:start; transition:opacity .3s; }
+.q-barra__menu{
+  justify-self:end; background:none; border:0; cursor:pointer; color:inherit;
+  font:inherit; font-size:var(--q-rot); letter-spacing:.1em; text-transform:uppercase;
+  padding:0; transition:opacity .3s;
+}
+.q-barra__tel:hover,.q-barra__menu:hover{ opacity:.6; }
+.q-barra__marca{
+  justify-self:center; opacity:0; visibility:hidden;
+  transition:opacity .45s ease,visibility 0s linear .45s;
+}
+.q-barra__marca.is-visible{ opacity:1; visibility:visible; transition:opacity .45s ease,visibility 0s; }
+.q-barra__logo{ display:block; height:clamp(19px,1.85vw,29px); width:auto; }
+.q-barra__logo--apilado{ display:none; }
+
+/* ---------- Portada ---------- */
+.q-portada{
+  height:82svh; min-height:430px; display:flex; align-items:flex-end;
+  padding:0 var(--q-m) clamp(16px,2.4vw,40px);
+}
+/* Pila justificada: cada palabra estirada a todo el ancho por separado. Como
+   QUARZO tiene 6 caracteres y REHABILITACIONES 16, las de arriba salen enormes
+   y las de abajo estrechas, con los cuatro extremos alineados.
+   Interlínea a cero: el recorte de QUARZO incluye el rabo de la Q, que baja
+   10,75 unidades bajo la línea base; con margen negativo cruzaba la R. */
+.q-marca{ display:block; width:100%; height:auto; }
+.q-portada__pie{
+  display:flex; flex-wrap:wrap; gap:1.4em; justify-content:space-between;
+  padding-top:clamp(12px,1.6vw,24px);
+}
+
+/* ---------- Banda a sangre ---------- */
+.q-banda{ position:relative; }
+.q-banda .q-foto{ height:min(80svh,780px); }
+.q-banda__srv{
+  position:absolute; top:clamp(52px,4.6vw,74px); left:var(--q-m); right:var(--q-m);
+  display:flex; justify-content:space-between; color:#fff; z-index:2;
+}
+
+/* ---------- Titular partido: la firma del sistema ---------- */
+.q-partido{
+  display:flex; justify-content:space-between; align-items:baseline; gap:1em;
+  padding:clamp(52px,9vw,150px) var(--q-m) clamp(20px,3vw,50px);
+  font-size:clamp(38px,8.6vw,152px); line-height:.94; letter-spacing:-.035em;
+  font-weight:500;
+}
+.q-partido .q-it{ letter-spacing:-.02em; }
+
+/* ---------- Foto ---------- */
+.q-foto{ position:relative; display:block; overflow:hidden; width:100%; }
+.q-foto img{ transition:transform 1.2s cubic-bezier(.22,.61,.24,1); }
+
+/* ---------- Collage escalonado ---------- */
+.q-collage{
+  display:grid; grid-template-columns:repeat(12,1fr); gap:clamp(10px,1.4vw,26px);
+  padding:0 var(--q-m) clamp(50px,8vw,130px); align-items:start;
+}
+.q-collage > *:hover img{ transform:scale(1.04); }
+.q-c1{ grid-column:1/4; margin-top:clamp(30px,7vw,120px); }
+.q-c2{ grid-column:5/9; }
+.q-c3{ grid-column:10/13; margin-top:clamp(50px,11vw,190px); }
+
+/* ---------- Obras ---------- */
+.q-obra{ padding:0 var(--q-m) clamp(48px,8vw,130px); }
+.q-fila{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(12px,1.8vw,34px); }
+.q-fila + .q-fila{ margin-top:clamp(30px,5vw,90px); }
+.q-fila--baja > *:last-child{ margin-top:clamp(34px,7vw,120px); }
+.q-pieza{ display:block; }
+.q-pieza:hover img{ transform:scale(1.035); }
+.q-pieza__pie{
+  display:grid; grid-template-columns:auto 1fr auto; gap:1.4em;
+  padding-top:clamp(8px,1vw,14px);
+}
+.q-pieza__ver{ opacity:0; transition:opacity .35s; }
+.q-pieza:hover .q-pieza__ver{ opacity:1; }
+.q-centrado{ display:flex; justify-content:center; padding-top:clamp(28px,4.5vw,70px); }
+
+/* ---------- Comparador ---------- */
+.q-comparar{ padding:0 var(--q-m) clamp(56px,9vw,150px); }
+.q-ab{ position:relative; overflow:hidden; cursor:ew-resize; touch-action:none; user-select:none; }
+.q-ab__b{ position:absolute; inset:0; clip-path:inset(0 0 0 var(--corte,50%)); }
+.q-ab__linea{ position:absolute; top:0; bottom:0; left:var(--corte,50%); width:1px; background:#fff; }
+.q-ab__tir{
+  position:absolute; top:50%; left:50%; translate:-50% -50%;
+  width:clamp(36px,2.7vw,46px); aspect-ratio:1; border-radius:50%;
+  border:1px solid #fff; color:#fff; display:grid; place-items:center; font-size:11px;
+  background:rgba(0,0,0,.14); backdrop-filter:blur(2px); cursor:ew-resize;
+}
+.q-ab__et{ position:absolute; bottom:clamp(11px,1.3vw,19px); color:#fff; pointer-events:none; z-index:2; }
+.q-ab__et--a{ left:clamp(11px,1.3vw,19px); }
+.q-ab__et--b{ right:clamp(11px,1.3vw,19px); }
+.q-pie3{ display:grid; grid-template-columns:auto 1fr auto; gap:1.4em; padding-top:clamp(8px,1vw,14px); }
+
+/* ---------- Bloque de dos columnas (ayudas, método) ---------- */
+.q-dos{
+  display:grid; grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  gap:clamp(18px,3.4vw,70px); padding:0 var(--q-m) clamp(56px,9vw,150px); align-items:start;
+}
+.q-lead{
+  font-size:clamp(17px,1.92vw,34px); line-height:1.3; letter-spacing:-.015em; max-width:26ch;
+}
+.q-nota{ margin-top:clamp(20px,3vw,50px); max-width:40ch; color:var(--q-apagado); line-height:1.65; }
+.q-nota p + p{ margin-top:1.4em; }
+
+/* ---------- Pasos del método ---------- */
+.q-pasos{ list-style:none; margin:0; padding:0; border-top:1px solid var(--q-linea); }
+.q-paso{
+  display:grid; grid-template-columns:auto 1fr; gap:clamp(14px,2.4vw,48px);
+  padding:clamp(14px,1.9vw,30px) 0; border-bottom:1px solid var(--q-linea);
+  align-items:baseline;
+}
+.q-paso__n{ color:var(--q-apagado); }
+.q-paso__t{ font-size:clamp(16px,1.5vw,26px); letter-spacing:-.015em; }
+.q-paso__d{ color:var(--q-apagado); margin-top:.5em; line-height:1.6; max-width:52ch; }
+
+/* ---------- Cierre ---------- */
+.q-cierre{ padding:0 var(--q-m) clamp(28px,4vw,60px); }
+.q-cierre__mail{
+  font-size:clamp(20px,3.5vw,62px); font-weight:500; letter-spacing:-.03em; line-height:1.1;
+  display:inline-block; border-bottom:1px solid var(--q-linea); transition:border-color .3s;
+}
+.q-cierre__mail:hover{ border-color:var(--q-tinta); }
+.q-cierre__fila{
+  display:flex; flex-wrap:wrap; gap:1.4em; justify-content:space-between;
+  padding-top:clamp(30px,5vw,90px);
+}
+.q-cierre__tel{ color:var(--q-tinta); }
+.q-cierre__tel a{ border-bottom:1px solid var(--q-linea); transition:border-color .3s; }
+.q-cierre__tel a:hover{ border-color:var(--q-tinta); }
+
+.q-pie{
+  background:var(--q-tinta); color:var(--q-papel);
+  padding:clamp(24px,3.4vw,48px) var(--q-m);
+  display:flex; flex-wrap:wrap; gap:1.4em; justify-content:space-between;
+}
+
+/* ---------- Entradas ---------- */
+.q-entra{
+  opacity:0; transform:translateY(14px);
+  transition:opacity 1.05s cubic-bezier(.22,.61,.24,1),transform 1.05s cubic-bezier(.22,.61,.24,1);
+}
+.q-entra.dentro{ opacity:1; transform:none; }
+
+@media (max-width:860px){
+  .q-partido{ flex-direction:column; align-items:flex-start; gap:.02em; font-size:clamp(34px,12vw,70px); }
+  .q-collage{ grid-template-columns:1fr 1fr; gap:10px; }
+  .q-c1,.q-c2,.q-c3{ grid-column:auto; margin-top:0; }
+  .q-c2{ grid-column:1/-1; }
+  .q-fila{ grid-template-columns:1fr; }
+  .q-fila--baja > *:last-child{ margin-top:0; }
+  .q-fila > * + *{ margin-top:clamp(22px,6vw,40px); }
+  .q-dos{ grid-template-columns:1fr; }
+  .q-pieza__ver{ opacity:1; }
+  .q-portada{ height:90svh; }
+  .q-banda .q-foto{ height:62svh; }
+  .q-cruces{ background-size:25vw 25vw; }
+  /* Una línea de 23 caracteres no cabe junto al menú en 390 px: 268 de
+     logotipo. Vuelve el apilado, que es compacto (ratio 3,5 frente a 17,9). */
+  .q-barra__logo{ display:none; }
+  .q-barra__logo--apilado{ display:block; height:30px; width:auto; }
+}
+@media (prefers-reduced-motion:reduce){
+  .q-entra{ opacity:1; transform:none; transition:none; }
+  .q-pagina *{ transition:none !important; }
+}
+
+/* ---------- Menú a pantalla completa ---------- */
+.q-menu{
+  position:fixed; inset:0; z-index:80;
+  background:var(--q-tinta); color:var(--q-papel);
+  display:flex; flex-direction:column; justify-content:space-between;
+  padding:clamp(11px,1.4vw,20px) var(--q-m) clamp(24px,3.4vw,48px);
+  opacity:0; visibility:hidden;
+  transition:opacity .5s cubic-bezier(.22,.61,.24,1),visibility 0s linear .5s;
+}
+.q-menu.is-abierto{ opacity:1; visibility:visible; transition:opacity .5s cubic-bezier(.22,.61,.24,1),visibility 0s; }
+.q-menu__barra{ display:flex; justify-content:space-between; align-items:center; }
+.q-menu__cerrar{
+  background:none; border:0; cursor:pointer; color:inherit; font:inherit; padding:0;
+  font-size:var(--q-rot); letter-spacing:.1em; text-transform:uppercase; transition:opacity .3s;
+}
+.q-menu__cerrar:hover{ opacity:.6; }
+
+/* Siete líneas tienen que caber en la pantalla sin scroll. A 84 px no cabían
+   y "Contacto" se comía el pie. El auto es el seguro para pantallas bajas
+   (un portátil de 13" en horizontal, una ventana a media altura). */
+.q-menu__lista{ display:flex; flex-direction:column; min-height:0; overflow-y:auto; }
+.q-menu__enlace{
+  display:grid; grid-template-columns:3.5em 1fr; align-items:baseline; gap:1em;
+  padding:clamp(5px,.72vw,11px) 0;
+  border-bottom:1px solid rgba(240,239,235,.15);
+  font-size:clamp(24px,4.2vw,58px); line-height:1.05; letter-spacing:-.03em;
+  transition:opacity .3s,padding-left .35s cubic-bezier(.22,.61,.24,1);
+}
+.q-menu__enlace:first-child{ border-top:1px solid rgba(240,239,235,.15); }
+.q-menu__enlace:hover{ padding-left:.35em; }
+/* El resto se apaga al señalar uno: enfoca la atención sin mover nada. */
+.q-menu__lista:hover .q-menu__enlace{ opacity:.42; }
+.q-menu__lista:hover .q-menu__enlace:hover{ opacity:1; }
+.q-menu__enlace:focus-visible{ outline:1px solid currentColor; outline-offset:4px; }
+
+.q-menu__pie{ display:flex; flex-wrap:wrap; gap:1.4em; justify-content:space-between; }
+
+@media (max-width:860px){
+  .q-menu__enlace{ grid-template-columns:2.4em 1fr; font-size:clamp(24px,8.5vw,40px); }
+}
+@media (prefers-reduced-motion:reduce){ .q-menu,.q-menu__enlace{ transition:none; } }
+
+/* ---------- Página de servicio ---------- */
+.q-migas{
+  display:flex; gap:.7em; align-items:baseline;
+  padding:clamp(58px,5.4vw,86px) var(--q-m) 0;
+}
+.q-serv-portada{ padding:clamp(20px,3vw,50px) var(--q-m) clamp(24px,3.6vw,60px); }
+.q-serv-titulo{
+  font-size:clamp(34px,7.4vw,128px); font-weight:500; line-height:.94;
+  letter-spacing:-.035em; margin:0;
+}
+.q-serv-sub{
+  font-size:clamp(20px,3.4vw,58px); line-height:1.06; letter-spacing:-.02em;
+  margin:.06em 0 0; color:var(--q-apagado);
+}
+
+/* Rejilla de obra: tres por fila, con la fila desplazada en vertical para que
+   no quede un tablero de ajedrez. */
+.q-rejilla{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(10px,1.4vw,26px); align-items:start; }
+.q-rejilla > *:nth-child(3n+2){ margin-top:clamp(20px,4vw,70px); }
+
+/* Enlaces a otros servicios, con el mismo ritmo que los pasos. */
+.q-otro{ transition:padding-left .35s cubic-bezier(.22,.61,.24,1); }
+.q-otro:hover{ padding-left:.6em; }
+
+/* ---------- Preguntas frecuentes ----------
+   <details> nativo: se abre sin JavaScript, el buscador del navegador
+   encuentra el texto de dentro y Google lo indexa igual. Un acordeón con
+   estado en React no da ninguna de las tres cosas. */
+.q-faqs{ border-top:1px solid var(--q-linea); }
+.q-faq{ border-bottom:1px solid var(--q-linea); }
+.q-faq__p{
+  display:flex; justify-content:space-between; align-items:baseline; gap:1.5em;
+  padding:clamp(14px,1.9vw,30px) 0; cursor:pointer; list-style:none;
+  font-size:clamp(16px,1.5vw,26px); letter-spacing:-.015em; line-height:1.25;
+  transition:opacity .3s;
+}
+.q-faq__p::-webkit-details-marker{ display:none; }
+.q-faq__p:hover{ opacity:.6; }
+.q-faq__mas{ flex:none; font-size:1.1em; line-height:1; transition:transform .35s cubic-bezier(.22,.61,.24,1); }
+.q-faq[open] .q-faq__mas{ transform:rotate(45deg); }
+.q-faq__r{
+  color:var(--q-apagado); line-height:1.65; max-width:66ch;
+  padding:0 0 clamp(14px,1.9vw,30px);
+}
+.q-faq summary:focus-visible{ outline:1px solid currentColor; outline-offset:3px; }
+
+@media (max-width:860px){
+  .q-rejilla{ grid-template-columns:1fr 1fr; }
+  .q-rejilla > *:nth-child(3n+2){ margin-top:0; }
+}
+
+/* Texto para lector de pantalla y para Google, invisible en pantalla.
+   clip-path y 1px, no display:none ni visibility:hidden: esos dos lo sacan
+   también del árbol de accesibilidad y del índice. */
+.q-oculto{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip-path:inset(50%); white-space:nowrap; border:0;
+}
+
+/* Sello de financiación en el pie. Sobre fondo negro va invertido: el original
+   es un PNG con tinta oscura y ahí desaparecería. */
+.q-pie__sello{ height:clamp(30px,3.2vw,46px); width:auto; filter:invert(1) brightness(1.6); }
+@media (max-width:860px){ .q-pie__sello{ height:34px; } }

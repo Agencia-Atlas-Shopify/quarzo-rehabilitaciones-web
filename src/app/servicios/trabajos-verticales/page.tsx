@@ -22,7 +22,10 @@ const trabajosVerticalesPage = {
   title: 'Trabajos Verticales',
   subtitle: 'Acceso con Cuerdas Profesional',
   description: 'Realizamos trabajos de reparación, mantenimiento y rehabilitación en fachadas mediante técnicas de acceso vertical con cuerdas. Una solución más económica, rápida y menos invasiva que los andamios tradicionales.',
-  heroImage: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1600',
+  heroImage: '/images/obra/vertical.jpg',
+  heroAlt: "Operario trabajando en vertical sobre la fachada de un edificio, sin andamio",
+  slug: '/servicios/trabajos-verticales',
+  tipoServicio: "Trabajos verticales en altura",
   benefits: [
     'Ahorro significativo respecto a los andamios tradicionales, con costes hasta un 50% menores en muchos trabajos.',
     'Mayor rapidez de ejecución al no requerir montaje y desmontaje de estructuras auxiliares.',
@@ -59,12 +62,12 @@ const trabajosVerticalesPage = {
     },
   ],
   gallery: [
-    'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=800',
-    'https://images.unsplash.com/photo-1508450859948-4e04fabaa4ea?q=80&w=800',
-    'https://images.unsplash.com/photo-1486718448742-163732cd1544?q=80&w=800',
-    'https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=800',
-    'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800',
-    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800',
+    { src: '/images/obra/vertical.jpg', alt: "Trabajo vertical sobre la fachada de un edificio en altura" },
+    { src: '/images/obra/fachada.jpg', alt: "Fachada intervenida mediante técnicas de acceso vertical" },
+    { src: '/images/obra/sate-1.jpg', alt: "Detalle de la fachada durante los trabajos" },
+    { src: '/images/obra/bloque.jpg', alt: "Edificio en altura donde se interviene sin montar andamio" },
+    { src: '/images/obra/patologia.jpg', alt: "Desprendimiento en un voladizo, una de las patologías que se reparan desde cuerda" },
+    { src: '/images/obra/terminado.jpg', alt: "Fachada terminada tras la intervención" },
   ],
   faqs: [
     {
@@ -100,35 +103,5 @@ const trabajosVerticalesPage = {
 };
 
 export default function TrabajosVerticalesPage() {
-  return (
-    <ServiceLayout {...trabajosVerticalesPage}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            name: 'Trabajos Verticales en Elche y Alicante',
-            description: 'Servicio profesional de trabajos verticales para reparación y mantenimiento de fachadas sin necesidad de andamios.',
-            provider: {
-              '@type': 'LocalBusiness',
-              name: 'Quarzo Rehabilitaciones',
-              address: {
-                '@type': 'PostalAddress',
-                streetAddress: 'Carrer Inca, 40',
-                addressLocality: 'Elx',
-                addressRegion: 'Alicante',
-                postalCode: '03206',
-                addressCountry: 'ES'
-              },
-              telephone: '+34697109583',
-              priceRange: '€€'
-            },
-            areaServed: ['Elche', 'Alicante', 'Santa Pola', 'Crevillente', 'Costa Blanca'],
-            serviceType: 'Trabajos en Altura'
-          })
-        }}
-      />
-    </ServiceLayout>
-  );
+  return <ServiceLayout {...trabajosVerticalesPage} />;
 }
