@@ -13,7 +13,15 @@ const nextConfig: NextConfig = {
         hostname: 'images.unsplash.com',
       },
     ],
-    formats: ['image/avif', 'image/webp'],
+    /* webp primero y avif después: avif comprime algo más pero tarda mucho
+       más en codificarse, y en Railway ese coste lo paga el PRIMER visitante
+       de cada tamaño. Con webp delante, la primera visita es bastante más
+       rápida y la diferencia de peso es pequeña.
+       minimumCacheTTL a 30 días: por defecto son 60 segundos y el optimizador
+       reprocesaba la misma foto una y otra vez. */
+    formats: ['image/webp'],
+    minimumCacheTTL: 2592000,
+    qualities: [70, 75, 82],
   },
 
   // Headers de caché optimizados

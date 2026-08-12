@@ -100,11 +100,17 @@ export function useEntradas() {
  *  Un recuadro centrado va pasando obras mientras crece, y al final se abre a
  *  sangre y descubre la página. La cabecera se ve desde el primer instante.
  * ------------------------------------------------------------------ */
+/* Copias LIGERAS, no los originales. La entrada llegó a descargar los diez
+   JPEG a tamaño completo antes de pintar nada: 13 MB de los 14,6 que pesaba la
+   home. El recuadro mide como mucho 56vw x 31vh, así que con 900 px de ancho
+   sobra hasta en pantalla retina. En webp y a calidad 58 las diez pesan 920 KB
+   juntas. Es la diferencia entre que la animación arranque al instante o a
+   los cinco segundos. */
 const FOTOS_INTRO = [
-  '/images/obra/sate-2.jpg', '/images/obra/terminado.jpg', '/images/obra/fachada.jpg',
-  '/images/obra/vertical.jpg', '/images/obra/andamio.jpg', '/images/obra/sate-1.jpg',
-  '/images/obra/bloque.jpg', '/images/obra/patologia.jpg', '/images/obra/sin-intervenir.jpg',
-  '/images/obra/forjado.jpg',
+  '/images/intro/sate-2.webp', '/images/intro/terminado.webp', '/images/intro/fachada.webp',
+  '/images/intro/vertical.webp', '/images/intro/andamio.webp', '/images/intro/sate-1.webp',
+  '/images/intro/bloque.webp', '/images/intro/patologia.webp', '/images/intro/sin-intervenir.webp',
+  '/images/intro/forjado.webp',
 ];
 
 export function Entrada() {
@@ -124,7 +130,13 @@ export function Entrada() {
     try { sessionStorage.setItem('quarzo-intro', '1'); } catch { /* modo privado */ }
 
     document.body.classList.add('q-cargando');
-    FOTOS_INTRO.forEach((f) => { const i = new window.Image(); i.src = f; });
+    /* Sólo las tres primeras por delante. Las demás dan tiempo de sobra a
+       llegar mientras corre el ciclo (135 ms por foto) y así no compiten con
+       la banda de la portada, que es lo que el visitante ve de verdad. */
+    FOTOS_INTRO.slice(0, 3).forEach((f) => { const i = new window.Image(); i.src = f; });
+    setTimeout(() => {
+      FOTOS_INTRO.slice(3).forEach((f) => { const i = new window.Image(); i.src = f; });
+    }, 400);
 
     const PASO = 135, VUELTAS = 12;
     let paso = 0;
@@ -171,8 +183,9 @@ export function Entrada() {
   return (
     <div className={`q-intro${fuera ? ' is-fuera' : ''}`} aria-hidden="true">
       <div className={`q-intro__caja${abriendo ? ' is-abriendo' : ''}`} style={estilo}>
-        {/* Sin next/image: aquí las fotos cambian cada 135 ms y lo que importa
-            es que ya estén en caché, no que se optimicen una a una. */}
+        {/* Sin next/image a propósito: cambian cada 135 ms y lo que importa es
+            que estén ya en caché, no que el optimizador las procese una a una
+            —eso añadiría diez peticiones a /_next/image en el peor momento. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={FOTOS_INTRO[n % FOTOS_INTRO.length]} alt="" />
       </div>
@@ -242,7 +255,7 @@ export function Foto({
         fill
         sizes={sizes}
         priority={prioridad}
-        quality={82}
+        quality={75}
         style={{ objectFit: 'cover' }}
       />
     </span>
