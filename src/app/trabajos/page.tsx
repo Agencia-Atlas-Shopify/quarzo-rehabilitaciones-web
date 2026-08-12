@@ -57,7 +57,7 @@ const DATOS = grafo(
   },
   {
     '@type': 'ImageGallery',
-    name: 'Obra ejecutada',
+    name: 'Obras ejecutadas',
     image: OBRAS.map((o) => ({ '@type': 'ImageObject', contentUrl: `${SITIO}${o.foto}`, caption: o.alt })),
   },
   migas([{ nombre: 'Trabajos', href: '/trabajos' }]),
@@ -83,7 +83,7 @@ export default function Trabajos() {
 
         <section className="q-serv-portada">
           <h1 className="q-serv-titulo">Trabajos</h1>
-          <p className="q-serv-sub q-it">Obra ejecutada</p>
+          <p className="q-serv-sub q-it">Obras ejecutadas</p>
         </section>
 
         {/* Filtros. Son <button> y no enlaces: no cambian de página, sólo

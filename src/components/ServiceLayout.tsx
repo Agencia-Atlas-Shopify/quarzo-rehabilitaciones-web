@@ -131,7 +131,7 @@ export default function ServiceLayout({
         {/* ---------- Obra ---------- */}
         {gallery.length > 0 && (
           <>
-            <Partido recto="Obra" italica="ejecutada" />
+            <Partido recto="Obras" italica="ejecutadas" />
             <section className="q-obra">
               <div className="q-rejilla">
                 {gallery.map((g, i) => (
