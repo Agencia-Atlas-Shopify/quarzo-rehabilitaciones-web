@@ -148,20 +148,26 @@ export default function Home() {
             antes y el después dentro del mismo encuadre, y aquí sí es cierto
             porque es un solo edificio en una sola fotografía. */}
         <section className="q-banda">
-          {/* La original es vertical (1200x1600) y en una banda 16/9 había que
-              elegir entre el técnico o la cúpula. cupula-hero.jpg es la misma
-              foto recortada bajo los pies del técnico y ENSANCHADA a 1600x900
-              con cielo: 200 px por lado en ESPEJO, que conserva el grano y el
-              degradado y no deja costura (replicando una columna salía un azul
-              plano y se marcaban dos bandas), más un parche en las dos esquinas
-              de abajo, donde el borde ya era cúpula y el espejo la duplicaba.
-              Al ser ya 16/9 exacto, no hace falta encuadre. */}
+          {/* OJO: esta imagen está AMPLIADA CON IA a partir de la foto real.
+              La original es vertical (1200x1600) y en una banda 16/9 obligaba
+              a elegir entre el técnico o la cúpula; mi primer apaño extendía
+              el cielo en espejo, pero sólo daba cielo liso. Esta versión sale
+              de pedirle a ChatGPT que continuara la escena, así que la cúpula,
+              el técnico y la escalera son REALES y el entorno (cerros, pueblo
+              al fondo, petos y la máquina de aire) está generado.
+              Es decoración de fondo, no una afirmación sobre la obra, pero
+              conviene saberlo antes de reutilizarla en otro sitio. */}
           <Foto
             src="/images/obra/cupula-hero.jpg"
             alt="Técnico de Quarzo trabajando desde cuerda sobre la cúpula dorada de un edificio"
             ratio="16/9"
             sizes="100vw"
             prioridad
+            /* La banda tiene alto fijo (min(80svh,780px)), así que en pantalla
+               ancha es más apaisada que 16/9 y el cover recorta por arriba y
+               por abajo: se comía el remate de la cúpula. Anclada arriba se
+               pierde algo de tejado, que es lo que menos cuenta. */
+            encuadre="center top"
           />
           <div className="q-banda__srv">
             <Rotulo>Fachadas</Rotulo>
