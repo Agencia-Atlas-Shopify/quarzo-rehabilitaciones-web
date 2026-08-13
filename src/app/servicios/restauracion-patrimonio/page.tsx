@@ -22,8 +22,8 @@ const restauracionPatrimonioPage = {
   title: 'Restauración de Patrimonio',
   subtitle: 'Conservación del Legado Arquitectónico',
   description: 'Recuperamos y preservamos edificios históricos con técnicas especializadas que respetan su valor patrimonial. Combinamos artesanía tradicional con tecnología moderna para devolver el esplendor a construcciones centenarias.',
-  heroImage: '/images/obra/andamio.jpg',
-  heroAlt: "Edificio con el andamio montado durante los trabajos de restauración",
+  heroImage: '/images/obra/arco-torre.jpg',
+  heroAlt: "Arco y torre de un edificio de arquitectura mediterránea, restaurados",
   slug: '/servicios/restauracion-patrimonio',
   tipoServicio: "Restauración de patrimonio",
   benefits: [
@@ -67,12 +67,12 @@ const restauracionPatrimonioPage = {
     },
   ],
   gallery: [
-    { src: '/images/obra/andamio.jpg', alt: "Andamio montado sobre el edificio durante la restauración" },
-    { src: '/images/obra/forjado.jpg', alt: "Canto de forjado antes de la restauración" },
-    { src: '/images/obra/patologia.jpg', alt: "Armadura vista en un elemento de hormigón deteriorado" },
-    { src: '/images/obra/bloque.jpg', alt: "Edificio antes de la intervención" },
-    { src: '/images/obra/terminado.jpg', alt: "Fachada restaurada" },
-    { src: '/images/obra/fachada.jpg', alt: "Detalle de la fachada tras la restauración" },
+    { src: '/images/obra/arco-obra.jpg', alt: "Arco durante la intervención, con el andamio montado" },
+    { src: '/images/obra/arco-terminado.jpg', alt: "El mismo tipo de arco una vez terminado" },
+    { src: '/images/obra/arco-obra-2.jpg', alt: "Andamio montado bajo los arcos durante los trabajos" },
+    { src: '/images/obra/patio-torre.jpg', alt: "Patio interior con la torre al fondo, terminado" },
+    { src: '/images/obra/cubierta.jpg', alt: "Cubierta deteriorada con la cúpula al fondo, antes de intervenir" },
+    { src: '/images/obra/arco-interior.jpg', alt: "Arco interior del edificio, ya terminado" },
   ],
   faqs: [
     {

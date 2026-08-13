@@ -223,6 +223,11 @@ body.q-cargando{ overflow:hidden; }
 /* ---------- Comparador ---------- */
 .q-comparar{ padding:0 var(--q-m) clamp(56px,9vw,150px); }
 .q-ab{ position:relative; overflow:hidden; cursor:ew-resize; touch-action:none; user-select:none; }
+/* Sin esto, al arrastrar sobre la foto el navegador cree que quieres "coger la
+   imagen": lanza dragstart, con él un pointercancel, y el gesto se corta a la
+   primera. Medido: el corte se quedaba a mitad de camino siempre.
+   pointer-events:none además, porque quien escucha es el contenedor. */
+.q-ab img{ -webkit-user-drag:none; user-drag:none; pointer-events:none; }
 .q-ab__b{ position:absolute; inset:0; clip-path:inset(0 0 0 var(--corte,50%)); }
 .q-ab__linea{ position:absolute; top:0; bottom:0; left:var(--corte,50%); width:1px; background:#fff; }
 .q-ab__tir{

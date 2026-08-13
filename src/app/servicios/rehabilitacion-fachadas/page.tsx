@@ -22,8 +22,8 @@ const rehabilitacionFachadasPage = {
   title: 'Rehabilitación de Fachadas',
   subtitle: 'Restauración Integral de Edificios',
   description: 'Devolvemos la vida a las fachadas deterioradas con soluciones integrales que combinan reparación estructural, tratamiento de humedades, aislamiento y acabados estéticos de primera calidad.',
-  heroImage: '/images/obra/terminado.jpg',
-  heroAlt: "Fachada de un bloque de viviendas ya rehabilitada, con el revoco y la pintura nuevos",
+  heroImage: '/images/obra/celosia-fachada.jpg',
+  heroAlt: "Fachada con celosías cerámicas y ventana en arco, ya rehabilitada",
   slug: '/servicios/rehabilitacion-fachadas',
   tipoServicio: "Rehabilitación de fachadas",
   benefits: [
@@ -67,12 +67,12 @@ const rehabilitacionFachadasPage = {
     },
   ],
   gallery: [
-    { src: '/images/obra/patologia.jpg', alt: "Voladizo de hormigón con el recubrimiento desprendido y la armadura oxidada a la vista" },
-    { src: '/images/obra/forjado.jpg', alt: "Canto de forjado deteriorado antes de intervenir" },
-    { src: '/images/obra/andamio.jpg', alt: "Edificio con el andamio montado durante la rehabilitación" },
-    { src: '/images/obra/fachada.jpg', alt: "Fachada rehabilitada de un edificio de viviendas" },
-    { src: '/images/obra/terminado.jpg', alt: "Bloque residencial con la fachada terminada" },
-    { src: '/images/obra/bloque.jpg', alt: "Bloque de viviendas antes de la intervención" },
+    { src: '/images/obra/armadura-techo.jpg', alt: "Techo con el revestimiento caído y la armadura del forjado a la vista" },
+    { src: '/images/obra/armadura-viga.jpg', alt: "Viga con el recubrimiento desprendido y la armadura oxidada" },
+    { src: '/images/obra/peritaje.jpg', alt: "Armadura vista y marcas azules de peritaje sobre el hormigón picado" },
+    { src: '/images/obra/armadura-canto.jpg', alt: "Canto de forjado con la armadura vista, junto a una celosía cerámica" },
+    { src: '/images/obra/grieta.jpg', alt: "Grieta y desprendimiento del revestimiento en una fachada" },
+    { src: '/images/obra/terminado.jpg', alt: "Bloque residencial con la fachada rehabilitada" },
   ],
   faqs: [
     {

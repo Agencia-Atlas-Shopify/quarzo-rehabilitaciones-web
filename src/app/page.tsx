@@ -25,7 +25,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import {
-  Barra, Cruces, Entrada, Foto, Partido, Rotulo, useEntradas,
+  Barra, Comparador, Cruces, Entrada, Foto, Partido, Rotulo, useEntradas,
 } from '@/components/quarzo';
 import Menu from '@/components/Menu';
 import { grafo, localBusiness, migas, NEGOCIO, SERVICIOS, SITIO } from '@/lib/seo';
@@ -77,14 +77,14 @@ const DATOS = grafo(
    siete enlaces a "#", y un enlace muerto en la sección que enseña el trabajo
    es peor que no tener la sección. */
 const OBRAS = [
-  { foto: '/images/obra/sate-1.jpg', titulo: 'Aislamiento térmico SATE', href: '/servicios/sate',
-    alt: 'Fachada con el sistema de aislamiento térmico por el exterior a medio colocar' },
-  { foto: '/images/obra/fachada.jpg', titulo: 'Rehabilitación de fachada', href: '/servicios/rehabilitacion-fachadas',
-    alt: 'Fachada rehabilitada de un edificio de viviendas' },
-  { foto: '/images/obra/vertical.jpg', titulo: 'Trabajos verticales', href: '/servicios/trabajos-verticales',
-    alt: 'Operario trabajando en vertical sobre la fachada de un edificio' },
-  { foto: '/images/obra/andamio.jpg', titulo: 'Restauración de patrimonio', href: '/servicios/restauracion-patrimonio',
-    alt: 'Edificio con el andamio montado durante la intervención' },
+  { foto: '/images/obra/cupula-vertical.jpg', titulo: 'Trabajos verticales', href: '/servicios/trabajos-verticales',
+    alt: 'Técnico de Quarzo trabajando desde cuerda sobre una cúpula dorada' },
+  { foto: '/images/obra/sate-2.jpg', titulo: 'Aislamiento térmico SATE', href: '/servicios/sate',
+    alt: 'Edificio a media intervención: media fachada con el ladrillo original y media con el aislamiento colocado' },
+  { foto: '/images/obra/arco-terminado.jpg', titulo: 'Restauración de patrimonio', href: '/servicios/restauracion-patrimonio',
+    alt: 'Arco de un edificio de arquitectura mediterránea, ya restaurado' },
+  { foto: '/images/obra/celosia-fachada.jpg', titulo: 'Rehabilitación de fachada', href: '/servicios/rehabilitacion-fachadas',
+    alt: 'Fachada con celosías cerámicas y ventana en arco, ya rehabilitada' },
 ];
 
 const PASOS = [
@@ -144,8 +144,8 @@ export default function Home() {
             porque es un solo edificio en una sola fotografía. */}
         <section className="q-banda">
           <Foto
-            src="/images/obra/sate-2.jpg"
-            alt="Edificio de viviendas a media intervención: media fachada con el ladrillo original y media ya con el aislamiento colocado"
+            src="/images/obra/cupula-vertical.jpg"
+            alt="Técnico de Quarzo trabajando desde cuerda sobre la cúpula dorada de un edificio"
             ratio="16/9"
             sizes="100vw"
             prioridad
@@ -161,16 +161,16 @@ export default function Home() {
         <Partido recto="Sobre" italica="los edificios" />
         <div className="q-collage">
           <div className="q-entra q-c1">
-            <Foto src="/images/obra/patologia.jpg" ratio="3/4" sizes="(max-width:860px) 50vw, 25vw"
-              alt="Voladizo de hormigón con el recubrimiento desprendido y la armadura oxidada a la vista" />
+            <Foto src="/images/obra/armadura-techo.jpg" ratio="3/4" sizes="(max-width:860px) 50vw, 25vw"
+              alt="Techo con el revestimiento caído y la armadura del forjado a la vista" />
           </div>
           <div className="q-entra q-c2">
-            <Foto src="/images/obra/terminado.jpg" ratio="4/5" sizes="(max-width:860px) 100vw, 34vw"
-              alt="Bloque residencial con la fachada ya rehabilitada" />
+            <Foto src="/images/obra/arco-obra.jpg" ratio="4/5" sizes="(max-width:860px) 100vw, 34vw"
+              alt="Arco de un edificio mediterráneo durante la intervención, con el andamio montado" />
           </div>
           <div className="q-entra q-c3">
-            <Foto src="/images/obra/forjado.jpg" ratio="3/4" sizes="(max-width:860px) 50vw, 25vw"
-              alt="Canto de forjado deteriorado antes de intervenir" />
+            <Foto src="/images/obra/peritaje.jpg" ratio="3/4" sizes="(max-width:860px) 50vw, 25vw"
+              alt="Armadura vista y marcas azules de peritaje sobre el hormigón picado" />
           </div>
         </div>
 
@@ -206,6 +206,18 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ---------- Antes y después ----------
+            Por fin una pareja REAL: el mismo edificio desde la calle, con el
+            montacargas y el andamio montados en la primera y terminado en la
+            segunda. Hasta ahora el comparador estaba sin usar porque las dos
+            fotos que había eran de edificios distintos. */}
+        <Partido recto="Antes" italica="y después" />
+        <Comparador
+          antes="/images/obra/ab-antes.jpg"
+          despues="/images/obra/ab-despues.jpg"
+          pie="Rehabilitación de fachada"
+        />
+
         {/* ---------- Ayudas ----------
             La razón por la que una comunidad se decide a rehabilitar AHORA y
             no dentro de cinco años. No estaba en la web anterior. Se habla del
@@ -235,8 +247,8 @@ export default function Home() {
             </div>
           </div>
           <div className="q-entra">
-            <Foto src="/images/obra/bloque.jpg" ratio="4/3" sizes="(max-width:860px) 100vw, 52vw"
-              alt="Bloque de viviendas antes de la intervención" />
+            <Foto src="/images/obra/torre-plataformas.jpg" ratio="4/3" sizes="(max-width:860px) 100vw, 52vw"
+              alt="Torre de viviendas con las plataformas de trabajo montadas en la fachada" />
           </div>
         </section>
 

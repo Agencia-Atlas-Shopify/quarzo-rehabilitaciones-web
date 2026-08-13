@@ -22,8 +22,8 @@ const trabajosVerticalesPage = {
   title: 'Trabajos Verticales',
   subtitle: 'Acceso con Cuerdas Profesional',
   description: 'Realizamos trabajos de reparación, mantenimiento y rehabilitación en fachadas mediante técnicas de acceso vertical con cuerdas. Una solución más económica, rápida y menos invasiva que los andamios tradicionales.',
-  heroImage: '/images/obra/vertical.jpg',
-  heroAlt: "Operario trabajando en vertical sobre la fachada de un edificio, sin andamio",
+  heroImage: '/images/obra/cupula-vertical.jpg',
+  heroAlt: "Técnico de Quarzo trabajando desde cuerda sobre una cúpula dorada, sin andamio",
   slug: '/servicios/trabajos-verticales',
   tipoServicio: "Trabajos verticales en altura",
   benefits: [
@@ -62,12 +62,12 @@ const trabajosVerticalesPage = {
     },
   ],
   gallery: [
-    { src: '/images/obra/vertical.jpg', alt: "Trabajo vertical sobre la fachada de un edificio en altura" },
-    { src: '/images/obra/fachada.jpg', alt: "Fachada intervenida mediante técnicas de acceso vertical" },
-    { src: '/images/obra/sate-1.jpg', alt: "Detalle de la fachada durante los trabajos" },
-    { src: '/images/obra/bloque.jpg', alt: "Edificio en altura donde se interviene sin montar andamio" },
-    { src: '/images/obra/patologia.jpg', alt: "Desprendimiento en un voladizo, una de las patologías que se reparan desde cuerda" },
-    { src: '/images/obra/terminado.jpg', alt: "Fachada terminada tras la intervención" },
+    { src: '/images/obra/cupula-vertical.jpg', alt: "Técnico en suspensión sobre la cúpula, asegurado con doble línea" },
+    { src: '/images/obra/torre-plataformas.jpg', alt: "Torre de viviendas con las plataformas de trabajo montadas en la fachada" },
+    { src: '/images/obra/torre-residencial.jpg', alt: "Torre residencial intervenida en altura" },
+    { src: '/images/obra/cupula.jpg', alt: "Cúpula dorada de un edificio, vista desde abajo" },
+    { src: '/images/obra/grieta.jpg', alt: "Grieta y desprendimiento del revestimiento, reparables desde cuerda" },
+    { src: '/images/obra/vertical.jpg', alt: "Trabajo vertical sobre la fachada de un edificio" },
   ],
   faqs: [
     {

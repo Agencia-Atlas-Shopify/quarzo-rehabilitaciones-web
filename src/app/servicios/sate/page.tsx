@@ -23,7 +23,7 @@ const satePage = {
   subtitle: 'Aislamiento Térmico por el Exterior',
   description: 'Instalamos sistemas de aislamiento térmico por el exterior (SATE) en Elche, Alicante y toda la provincia. Reduce el consumo energético de tu edificio hasta un 70% y mejora el confort térmico durante todo el año.',
   heroImage: '/images/obra/sate-2.jpg',
-  heroAlt: "Edificio de viviendas a media intervención: media fachada con el ladrillo original y media ya con el aislamiento térmico colocado",
+  heroAlt: "Edificio a media intervención: media fachada con el ladrillo original y media con el aislamiento colocado",
   slug: '/servicios/sate',
   tipoServicio: "Aislamiento térmico por el exterior",
   benefits: [
@@ -62,12 +62,12 @@ const satePage = {
     },
   ],
   gallery: [
-    { src: '/images/obra/sate-1.jpg', alt: "Panel de aislamiento térmico por el exterior fijado sobre la fachada existente" },
-    { src: '/images/obra/sate-2.jpg', alt: "Fachada con el sistema SATE a medio colocar, con el ladrillo original todavía a la vista" },
-    { src: '/images/obra/terminado.jpg', alt: "Bloque residencial con la fachada terminada tras el aislamiento" },
-    { src: '/images/obra/fachada.jpg', alt: "Fachada rehabilitada de un edificio de viviendas en la Costa Blanca" },
-    { src: '/images/obra/bloque.jpg', alt: "Bloque de viviendas antes de la intervención" },
-    { src: '/images/obra/andamio.jpg', alt: "Edificio con el andamio montado durante los trabajos" },
+    { src: '/images/obra/sate-1.jpg', alt: "Panel de aislamiento térmico por el exterior fijado sobre la fachada" },
+    { src: '/images/obra/sate-2.jpg', alt: "Fachada con el sistema SATE a medio colocar" },
+    { src: '/images/obra/torre-plataformas.jpg', alt: "Torre con las plataformas montadas para colocar el aislamiento" },
+    { src: '/images/obra/terminado.jpg', alt: "Bloque con la fachada terminada tras el aislamiento" },
+    { src: '/images/obra/celosia-fachada.jpg', alt: "Fachada acabada tras la intervención" },
+    { src: '/images/obra/fachada.jpg', alt: "Fachada rehabilitada de un edificio de viviendas" },
   ],
   faqs: [
     {

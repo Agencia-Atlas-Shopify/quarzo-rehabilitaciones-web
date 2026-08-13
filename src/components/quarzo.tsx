@@ -107,10 +107,11 @@ export function useEntradas() {
    juntas. Es la diferencia entre que la animación arranque al instante o a
    los cinco segundos. */
 const FOTOS_INTRO = [
-  '/images/intro/sate-2.webp', '/images/intro/terminado.webp', '/images/intro/fachada.webp',
-  '/images/intro/vertical.webp', '/images/intro/andamio.webp', '/images/intro/sate-1.webp',
-  '/images/intro/bloque.webp', '/images/intro/patologia.webp', '/images/intro/sin-intervenir.webp',
-  '/images/intro/forjado.webp',
+  '/images/intro/cupula-vertical.webp', '/images/intro/arco-terminado.webp',
+  '/images/intro/sate-2.webp', '/images/intro/armadura-techo.webp',
+  '/images/intro/arco-obra.webp', '/images/intro/celosia-fachada.webp',
+  '/images/intro/cupula.webp', '/images/intro/torre-plataformas.webp',
+  '/images/intro/peritaje.webp', '/images/intro/arco-torre.webp',
 ];
 
 export function Entrada() {
@@ -265,11 +266,11 @@ export function Foto({
 /* ------------------------------------------------------------------ *
  *  Comparador antes / después
  *
- *  NO se usa en la home todavía: hace falta una pareja REAL del mismo edificio
- *  tomada desde el mismo punto. Las fotos que hay hoy son de edificios
- *  distintos y montarlas aquí sería vender algo que no es.
- *  Se deja listo para el día que Quarzo tenga la pareja: se le pasan las dos
- *  rutas y funciona.
+ *  Estuvo montado y sin usar durante un tiempo porque las únicas dos fotos
+ *  disponibles eran de EDIFICIOS DISTINTOS, y una pareja falsa aquí es
+ *  publicidad engañosa. Con la tanda de fotos del 13/08/2026 llegó por fin
+ *  una pareja de verdad: el mismo edificio desde la calle, con los medios
+ *  auxiliares montados y ya terminado.
  * ------------------------------------------------------------------ */
 export function Comparador({ antes, despues, pie }: { antes: string; despues: string; pie: string }) {
   const caja = useRef<HTMLDivElement>(null);
