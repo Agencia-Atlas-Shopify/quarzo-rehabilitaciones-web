@@ -148,12 +148,18 @@ export default function Home() {
             antes y el después dentro del mismo encuadre, y aquí sí es cierto
             porque es un solo edificio en una sola fotografía. */}
         <section className="q-banda">
+          {/* La foto es vertical (1200x1600) y el técnico está en el tercio
+              alto. Con el recorte centrado desaparecía justo él, que es lo
+              único que cuenta la historia; con "top" salía solo cielo. El 22%
+              es el punto medido: entra la figura entera, el remate y la masa
+              de la cúpula, y la escalera que da la escala. */}
           <Foto
             src="/images/obra/cupula-vertical.jpg"
             alt="Técnico de Quarzo trabajando desde cuerda sobre la cúpula dorada de un edificio"
             ratio="16/9"
             sizes="100vw"
             prioridad
+            encuadre="center 22%"
           />
           <div className="q-banda__srv">
             <Rotulo>Fachadas</Rotulo>
@@ -174,8 +180,8 @@ export default function Home() {
               alt="Arco de un edificio mediterráneo durante la intervención, con el andamio montado" />
           </div>
           <div className="q-entra q-c3">
-            <Foto src="/images/obra/peritaje.jpg" ratio="3/4" sizes="(max-width:860px) 50vw, 25vw"
-              alt="Armadura vista y marcas azules de peritaje sobre el hormigón picado" />
+            <Foto src="/images/obra/arco-interior.jpg" ratio="3/4" sizes="(max-width:860px) 50vw, 25vw"
+              alt="Arco interior del edificio ya restaurado, enmarcando la torre al fondo" />
           </div>
         </div>
 

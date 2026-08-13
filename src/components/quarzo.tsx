@@ -243,10 +243,13 @@ export function Barra({ onMenu }: { onMenu: () => void }) {
  *  todo el mundo y la optimización no sirve de nada.
  * ------------------------------------------------------------------ */
 export function Foto({
-  src, alt, ratio, sizes, prioridad = false, className = '',
+  src, alt, ratio, sizes, prioridad = false, className = '', encuadre = 'center',
 }: {
   src: string; alt: string; ratio: string; sizes: string;
   prioridad?: boolean; className?: string;
+  /** Por dónde recorta el cover. 'top' cuando lo que importa está arriba y
+   *  el recorte centrado se lo come: pasó con el técnico sobre la cúpula. */
+  encuadre?: string;
 }) {
   return (
     <span className={`q-foto ${className}`} style={{ aspectRatio: ratio }}>
@@ -257,7 +260,7 @@ export function Foto({
         sizes={sizes}
         priority={prioridad}
         quality={75}
-        style={{ objectFit: 'cover' }}
+        style={{ objectFit: 'cover', objectPosition: encuadre }}
       />
     </span>
   );
