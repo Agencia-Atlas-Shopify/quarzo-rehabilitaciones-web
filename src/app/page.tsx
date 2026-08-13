@@ -156,9 +156,13 @@ export default function Home() {
               el técnico y la escalera son REALES y el entorno (cerros, pueblo
               al fondo, petos y la máquina de aire) está generado.
               Es decoración de fondo, no una afirmación sobre la obra, pero
-              conviene saberlo antes de reutilizarla en otro sitio. */}
+              conviene saberlo antes de reutilizarla en otro sitio.
+              El fichero se llama cupula-portada y no cupula-hero porque el
+              optimizador cachea 30 días POR URL: al sustituir el archivo sin
+              cambiar el nombre, producción siguió sirviendo la versión vieja
+              aunque el despliegue fuera correcto. */}
           <Foto
-            src="/images/obra/cupula-hero.jpg"
+            src="/images/obra/cupula-portada.jpg"
             alt="Técnico de Quarzo trabajando desde cuerda sobre la cúpula dorada de un edificio"
             ratio="16/9"
             sizes="100vw"
