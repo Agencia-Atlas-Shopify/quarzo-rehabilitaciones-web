@@ -76,15 +76,20 @@ const DATOS = grafo(
 /* Cada obra apunta a la página de servicio que le corresponde. Antes eran
    siete enlaces a "#", y un enlace muerto en la sección que enseña el trabajo
    es peor que no tener la sección. */
+/* Cuatro edificios DISTINTOS, uno por servicio. El conjunto de la cúpula da
+   fotos muy buenas, pero salía en la banda de portada, en el collage y en dos
+   de las cuatro tarjetas: la home parecía la web de un solo edificio.
+   La cúpula se queda donde más pesa, en la banda, y las tarjetas enseñan otras
+   obras. Aquí también estaba repetida la misma foto en banda y en tarjeta. */
 const OBRAS = [
-  { foto: '/images/obra/cupula-vertical.jpg', titulo: 'Trabajos verticales', href: '/servicios/trabajos-verticales',
-    alt: 'Técnico de Quarzo trabajando desde cuerda sobre una cúpula dorada' },
+  { foto: '/images/obra/vertical.jpg', titulo: 'Trabajos verticales', href: '/servicios/trabajos-verticales',
+    alt: 'Operario trabajando en vertical sobre la fachada de un edificio, sin andamio' },
   { foto: '/images/obra/sate-2.jpg', titulo: 'Aislamiento térmico SATE', href: '/servicios/sate',
     alt: 'Edificio a media intervención: media fachada con el ladrillo original y media con el aislamiento colocado' },
-  { foto: '/images/obra/arco-terminado.jpg', titulo: 'Restauración de patrimonio', href: '/servicios/restauracion-patrimonio',
-    alt: 'Arco de un edificio de arquitectura mediterránea, ya restaurado' },
-  { foto: '/images/obra/celosia-fachada.jpg', titulo: 'Rehabilitación de fachada', href: '/servicios/rehabilitacion-fachadas',
-    alt: 'Fachada con celosías cerámicas y ventana en arco, ya rehabilitada' },
+  { foto: '/images/obra/andamio.jpg', titulo: 'Restauración de patrimonio', href: '/servicios/restauracion-patrimonio',
+    alt: 'Edificio con el andamio montado durante los trabajos de restauración' },
+  { foto: '/images/obra/terminado.jpg', titulo: 'Rehabilitación de fachada', href: '/servicios/rehabilitacion-fachadas',
+    alt: 'Bloque residencial con la fachada rehabilitada, revoco y pintura nuevos' },
 ];
 
 const PASOS = [
