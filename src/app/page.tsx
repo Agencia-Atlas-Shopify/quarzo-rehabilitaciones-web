@@ -148,18 +148,20 @@ export default function Home() {
             antes y el después dentro del mismo encuadre, y aquí sí es cierto
             porque es un solo edificio en una sola fotografía. */}
         <section className="q-banda">
-          {/* La foto es vertical (1200x1600) y el técnico está en el tercio
-              alto. Con el recorte centrado desaparecía justo él, que es lo
-              único que cuenta la historia; con "top" salía solo cielo. El 22%
-              es el punto medido: entra la figura entera, el remate y la masa
-              de la cúpula, y la escalera que da la escala. */}
+          {/* La original es vertical (1200x1600) y en una banda 16/9 había que
+              elegir entre el técnico o la cúpula. cupula-hero.jpg es la misma
+              foto recortada bajo los pies del técnico y ENSANCHADA a 1600x900
+              con cielo: 200 px por lado en ESPEJO, que conserva el grano y el
+              degradado y no deja costura (replicando una columna salía un azul
+              plano y se marcaban dos bandas), más un parche en las dos esquinas
+              de abajo, donde el borde ya era cúpula y el espejo la duplicaba.
+              Al ser ya 16/9 exacto, no hace falta encuadre. */}
           <Foto
-            src="/images/obra/cupula-vertical.jpg"
+            src="/images/obra/cupula-hero.jpg"
             alt="Técnico de Quarzo trabajando desde cuerda sobre la cúpula dorada de un edificio"
             ratio="16/9"
             sizes="100vw"
             prioridad
-            encuadre="center 22%"
           />
           <div className="q-banda__srv">
             <Rotulo>Fachadas</Rotulo>
