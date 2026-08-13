@@ -192,8 +192,11 @@ export default function Home() {
               alt="Arco de un edificio mediterráneo durante la intervención, con el andamio montado" />
           </div>
           <div className="q-entra q-c3">
-            <Foto src="/images/obra/arco-interior.jpg" ratio="3/4" sizes="(max-width:860px) 50vw, 25vw"
-              alt="Arco interior del edificio ya restaurado, enmarcando la torre al fondo" />
+            {/* De OTRA obra a propósito: las otras dos del collage salen del
+                mismo conjunto de la cúpula y la sección parecía ir de un solo
+                edificio. */}
+            <Foto src="/images/obra/sate-1.jpg" ratio="3/4" sizes="(max-width:860px) 50vw, 25vw"
+              alt="Paneles de aislamiento térmico colocados sobre la fachada, junto a las celosías originales" />
           </div>
         </div>
 
